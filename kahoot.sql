@@ -2,147 +2,121 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema kahoot
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema kahoot
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `kahoot` DEFAULT CHARACTER SET utf8 ;
-USE `kahoot` ;
-
--- -----------------------------------------------------
--- Table `kahoot`.`categorie`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kahoot`.`categorie` (
-  `idCATEGORIE` INT NOT NULL AUTO_INCREMENT,
-  `texteCATEGORIE` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idCATEGORIE`),
-  UNIQUE INDEX `texteCATEGORIE_UNIQUE` (`texteCATEGORIE` ASC) VISIBLE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 28
-DEFAULT CHARACTER SET = utf8;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 
 -- -----------------------------------------------------
--- Table `kahoot`.`joueur`
+-- Schema Kahoot
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kahoot`.`joueur` (
-  `idJOUEUR` INT NOT NULL AUTO_INCREMENT,
-  `login` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idJOUEUR`),
-  UNIQUE INDEX `UC_LOGIN` (`login` ASC) VISIBLE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 15
-DEFAULT CHARACTER SET = utf8;
+CREATE SCHEMA IF NOT EXISTS `Kahoot` ;
+USE `Kahoot` ;
+
+-- -----------------------------------------------------
+-- Table `Kahoot`.`Joueur`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Kahoot`.`Joueur` (
+  `ID_JOUEUR` INT NOT NULL AUTO_INCREMENT,
+  `NOM_JOUEUR` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`ID_JOUEUR`))
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kahoot`.`partie`
+-- Table `Kahoot`.`REPONSE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kahoot`.`partie` (
-  `ID_PARTIE` INT NOT NULL AUTO_INCREMENT,
-  `DEBUT` DATETIME NULL DEFAULT NULL,
-  `categorie_idCATEGORIE` INT NOT NULL,
-  PRIMARY KEY (`ID_PARTIE`, `categorie_idCATEGORIE`),
-  INDEX `fk_partie_categorie1_idx` (`categorie_idCATEGORIE` ASC) VISIBLE,
-  CONSTRAINT `fk_partie_categorie1`
-    FOREIGN KEY (`categorie_idCATEGORIE`)
-    REFERENCES `kahoot`.`categorie` (`idCATEGORIE`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+CREATE TABLE IF NOT EXISTS `Kahoot`.`REPONSE` (
+  `ID_REPONSE` INT NOT NULL AUTO_INCREMENT,
+  `TEXTE_REPONSE` VARCHAR(50) NULL,
+  PRIMARY KEY (`ID_REPONSE`))
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kahoot`.`question`
+-- Table `Kahoot`.`CATEGORIE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kahoot`.`question` (
+CREATE TABLE IF NOT EXISTS `Kahoot`.`CATEGORIE` (
+  `ID_CATEGORIE` INT NOT NULL AUTO_INCREMENT,
+  `TEXTE_CATEGORIE` VARCHAR(25) NOT NULL,
+  PRIMARY KEY (`ID_CATEGORIE`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Kahoot`.`QUESTION`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Kahoot`.`QUESTION` (
   `ID_QUESTION` INT NOT NULL AUTO_INCREMENT,
+  `TEXTE_QUESTION` VARCHAR(50) NULL,
+  `CATEGORIE_ID_CATEGORIE` INT NOT NULL,
   `ID_BONNE_REPONSE` INT NOT NULL,
-  `ID_CATEGORIE` INT NOT NULL,
-  `textequestion` VARCHAR(200) NULL DEFAULT NULL,
-  PRIMARY KEY (`ID_QUESTION`),
-  INDEX `fk_QUESTION_REPONSE1_idx` (`ID_BONNE_REPONSE` ASC) VISIBLE,
-  INDEX `fk_QUESTION_CATEGORIE1_idx` (`ID_CATEGORIE` ASC) VISIBLE,
+  PRIMARY KEY (`ID_QUESTION`, `CATEGORIE_ID_CATEGORIE`, `ID_BONNE_REPONSE`),
   CONSTRAINT `fk_QUESTION_CATEGORIE1`
-    FOREIGN KEY (`ID_CATEGORIE`)
-    REFERENCES `kahoot`.`categorie` (`idCATEGORIE`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 89
-DEFAULT CHARACTER SET = utf8;
+    FOREIGN KEY (`CATEGORIE_ID_CATEGORIE`)
+    REFERENCES `Kahoot`.`CATEGORIE` (`ID_CATEGORIE`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_QUESTION_Reponse1`
+    FOREIGN KEY (`ID_BONNE_REPONSE`)
+    REFERENCES `Kahoot`.`REPONSE` (`ID_REPONSE`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kahoot`.`questions_partie`
+-- Table `Kahoot`.`PROPOSITION`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kahoot`.`questions_partie` (
-  `question_ID_QUESTION` INT NOT NULL,
-  `partie_ID_PARTIE` INT NOT NULL,
-  PRIMARY KEY (`question_ID_QUESTION`, `partie_ID_PARTIE`),
-  INDEX `fk_question_has_partie_partie1_idx` (`partie_ID_PARTIE` ASC) VISIBLE,
-  CONSTRAINT `fk_question_has_partie_question1`
-    FOREIGN KEY (`question_ID_QUESTION`)
-    REFERENCES `kahoot`.`question` (`ID_QUESTION`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_question_has_partie_partie1`
-    FOREIGN KEY (`partie_ID_PARTIE`)
-    REFERENCES `kahoot`.`partie` (`ID_PARTIE`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+CREATE TABLE IF NOT EXISTS `Kahoot`.`PROPOSITION` (
+  `Reponse_ID_REPONSE` INT NOT NULL,
+  `QUESTION_ID_QUESTION` INT NOT NULL,
+  PRIMARY KEY (`Reponse_ID_REPONSE`, `QUESTION_ID_QUESTION`),
+  CONSTRAINT `fk_PROPOSITION_Reponse1`
+    FOREIGN KEY (`Reponse_ID_REPONSE`)
+    REFERENCES `Kahoot`.`REPONSE` (`ID_REPONSE`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_PROPOSITION_QUESTION1`
+    FOREIGN KEY (`QUESTION_ID_QUESTION`)
+    REFERENCES `Kahoot`.`QUESTION` (`ID_QUESTION`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kahoot`.`reponse`
+-- Table `Kahoot`.`PARTIE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kahoot`.`reponse` (
-  `ID_Reponse` INT NOT NULL AUTO_INCREMENT,
-  `texteREPONSE` VARCHAR(45) NULL DEFAULT NULL,
-  `question_ID_QUESTION` INT NOT NULL,
-  PRIMARY KEY (`ID_Reponse`, `question_ID_QUESTION`),
-  INDEX `fk_reponse_question1_idx` (`question_ID_QUESTION` ASC) VISIBLE,
-  CONSTRAINT `fk_reponse_question1`
-    FOREIGN KEY (`question_ID_QUESTION`)
-    REFERENCES `kahoot`.`question` (`ID_QUESTION`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 337
-DEFAULT CHARACTER SET = utf8;
+CREATE TABLE IF NOT EXISTS `Kahoot`.`PARTIE` (
+  `ID_PARTIE` INT NOT NULL AUTO_INCREMENT,
+  `Date` DATE NOT NULL,
+  `Score` INT NOT NULL,
+  `Joueur_ID_JOUEUR` INT NOT NULL,
+  PRIMARY KEY (`ID_PARTIE`, `Joueur_ID_JOUEUR`),
+  CONSTRAINT `fk_PARTIE_Joueur1`
+    FOREIGN KEY (`Joueur_ID_JOUEUR`)
+    REFERENCES `Kahoot`.`Joueur` (`ID_JOUEUR`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `kahoot`.`score`
+-- Table `Kahoot`.`QUESTION_PARTIE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `kahoot`.`score` (
-  `joueur_idJOUEUR` INT NOT NULL,
-  `partie_ID_PARTIE` INT NOT NULL,
-  `Score` INT NULL DEFAULT 0,
-  PRIMARY KEY (`joueur_idJOUEUR`, `partie_ID_PARTIE`),
-  INDEX `fk_Score_partie1_idx` (`partie_ID_PARTIE` ASC) VISIBLE,
-  CONSTRAINT `fk_Score_joueur1`
-    FOREIGN KEY (`joueur_idJOUEUR`)
-    REFERENCES `kahoot`.`joueur` (`idJOUEUR`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_Score_partie1`
-    FOREIGN KEY (`partie_ID_PARTIE`)
-    REFERENCES `kahoot`.`partie` (`ID_PARTIE`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+CREATE TABLE IF NOT EXISTS `Kahoot`.`QUESTION_PARTIE` (
+  `PARTIE_ID_PARTIE` INT NOT NULL,
+  `QUESTION_ID_QUESTION` INT NOT NULL,
+  PRIMARY KEY (`PARTIE_ID_PARTIE`, `QUESTION_ID_QUESTION`),
+  CONSTRAINT `fk_QUESTION_PARTIE_PARTIE1`
+    FOREIGN KEY (`PARTIE_ID_PARTIE`)
+    REFERENCES `Kahoot`.`PARTIE` (`ID_PARTIE`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_QUESTION_PARTIE_QUESTION1`
+    FOREIGN KEY (`QUESTION_ID_QUESTION`)
+    REFERENCES `Kahoot`.`QUESTION` (`ID_QUESTION`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
