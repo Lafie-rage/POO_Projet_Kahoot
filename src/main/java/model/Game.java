@@ -7,9 +7,10 @@ import java.util.List;
 
 public class Game {
     private int id;
-    private int nbQuestions = 1; // Au moins une questions
+    private int nbQuestions = 1; // At least one question
     private Date date = new Date(Calendar.getInstance().getTime().getTime()); // Now date
     private List<Player> players = new ArrayList<>();
+    private List<Question> questions = new ArrayList<>(); // Questions that will be asked to the whole players of the current game.
     private Category category;
 
     public Game(int nbQuestions, List<Player> players, Category category) {
@@ -22,6 +23,7 @@ public class Game {
         if (nbQuestions > 0) {
             this.nbQuestions = nbQuestions;
         }
+        this.questions = this.category.getQuestions(this.nbQuestions); // defining the list of questions to ask
     }
 
     public int getNbQuestions() {

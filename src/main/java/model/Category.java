@@ -69,6 +69,7 @@ public class Category {
         List<Question> questions = new ArrayList<>();
         List<Integer> alreadyUsed = new ArrayList<>();
         int random;
+        nbQuestions = Math.min(nbQuestions, this.questions.size());
         for (int i = 0; i < nbQuestions; i++) {
             do {
                 random = (int) (Math.random() * this.questions.size());
