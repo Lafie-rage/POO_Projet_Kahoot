@@ -5,13 +5,13 @@ public class Player {
     private String pseudo;
     private String password;
 
-    public Player(String name, String pseudo, String password) {
+    public Player( String pseudo, String password) {
         this.pseudo = pseudo;
         this.password = password;
     }
 
-    public Player(int id, String name, String pseudo, String password) {
-        this(name, pseudo, password);
+    public Player(int id, String pseudo, String password) {
+        this(pseudo, password);
         this.id = id;
     }
 
