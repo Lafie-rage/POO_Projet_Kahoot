@@ -1,26 +1,26 @@
 package utils.database.category;
 
-import quizz.model.Category;
-import quizz.model.Question;
+import model.Category;
+import model.Question;
 import utils.database.question.QuestionRepository;
 
 import java.util.List;
 
 public class CategoryRepository {
-    CategoryDAO dao = new CategoryDAO();
+    private static final CategoryDAO dao = new CategoryDAO();
 
-    public List<Category> getAll() {
+    public static List<Category> getAll() {
         return dao.getAll();
     }
 
-    public Category get(int id) {
+    public static Category get(int id) {
         QuestionRepository questionRepository = new QuestionRepository();
         Category item = dao.get(id);
         item.setQuestions(questionRepository.getAll(item));
         return item;
     }
 
-    public boolean add(Category item) {
+    public static boolean add(Category item) {
         QuestionRepository questionRepository = new QuestionRepository();
         boolean flag = true;
         int id = dao.add(item);

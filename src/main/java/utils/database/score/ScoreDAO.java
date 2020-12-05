@@ -1,7 +1,7 @@
 package utils.database.score;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
-import quizz.model.Score;
+//import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import model.Score;
 import utils.database.DBHelper;
 
 import java.sql.PreparedStatement;
@@ -9,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ScoreDAO {
-    DBHelper dbHelper;
+class ScoreDAO {
+    private DBHelper dbHelper;
 
     public ScoreDAO() {
         try {

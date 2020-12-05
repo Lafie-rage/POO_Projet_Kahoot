@@ -3,9 +3,9 @@ package utils.database;
 import java.sql.*;
 
 public class DBHelper {
-    private static final String username = "quizz_app";
-    private static final String password = "app";
-    private static final String url = "jdbc:mysql://localhost:3306/POO_TP2_QUIZZ";
+    private static final String username = "root";
+    private static final String password = "";
+    private static final String url = "jdbc:mysql://localhost:3306/kahoot?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC";
     private static Connection connection;
 
     public DBHelper() throws SQLException {

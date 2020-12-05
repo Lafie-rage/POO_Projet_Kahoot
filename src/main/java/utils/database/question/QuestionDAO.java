@@ -1,8 +1,8 @@
 package utils.database.question;
 
 import utils.database.DBHelper;
-import quizz.model.Category;
-import quizz.model.Question;
+import model.Category;
+import model.Question;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +11,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionDAO {
-    DBHelper dbHelper;
+class QuestionDAO {
+    private DBHelper dbHelper;
 
     public QuestionDAO() {
         try {
@@ -91,6 +91,7 @@ public class QuestionDAO {
                     return res.getInt(1);
             }
         } catch (SQLException throwables) {
+
             return Integer.MIN_VALUE;
         }
         return -1;

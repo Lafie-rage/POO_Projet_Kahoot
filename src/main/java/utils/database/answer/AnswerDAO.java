@@ -1,8 +1,8 @@
 package utils.database.answer;
 
 import utils.database.DBHelper;
-import quizz.model.Answer;
-import quizz.model.Question;
+import model.Answer;
+import model.Question;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +11,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnswerDAO {
-    DBHelper dbHelper;
+  class AnswerDAO {
+    private  DBHelper dbHelper;
 
     public AnswerDAO() {
         try {

@@ -1,7 +1,6 @@
 package model;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,32 +21,11 @@ public class Category {
         setQuestions(questions);
     }
 
-    public Category(String name, JSONObject json) {
+    public Category(String name) {
         this.name = name;
-        parseJSON(json);
     }
 
-    private void parseJSON(JSONObject json) {
-        JSONArray jsonQuestions = json.getJSONObject("quizz").getJSONObject("fr").getJSONArray("débutant");
-        List<Question> questions = new ArrayList<>();
 
-        for (Object question : jsonQuestions) {
-            if (question instanceof JSONObject) {
-                List<Answer> propositions = new ArrayList<>();
-                Answer reponse = null;
-                for (Object proposition : ((JSONObject) question).getJSONArray("propositions")) {
-                    if (proposition.toString().equals(((JSONObject) question).getString("réponse"))) {
-                        reponse = new Answer(propositions.size(), proposition.toString());
-                        propositions.add(reponse);
-                    } else
-                        propositions.add(new Answer(propositions.size(), proposition.toString()));
-
-                }
-                questions.add(new Question(((JSONObject) question).getString("question"), propositions, reponse, this));
-            }
-        }
-        this.questions = questions;
-    }
 
     public int getId() {
         return id;

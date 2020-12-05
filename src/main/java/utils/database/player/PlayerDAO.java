@@ -1,9 +1,10 @@
 package utils.database.player;
 
-import quizz.model.Category;
-import utils.database.DBHelper;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
-import quizz.model.Player;
+import model.Category;
+import utils.database.DBHelper;
+
+ import model.Player;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,8 +13,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlayerDAO {
-    DBHelper dbHelper;
+class PlayerDAO {
+    private DBHelper dbHelper;
 
     public PlayerDAO() {
         try {

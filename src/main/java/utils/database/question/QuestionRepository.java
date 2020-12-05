@@ -1,20 +1,20 @@
 package utils.database.question;
 
 import utils.database.answer.AnswerRepository;
-import quizz.model.Answer;
-import quizz.model.Category;
-import quizz.model.Question;
+import model.Answer;
+import model.Category;
+import model.Question;
 
 import java.util.List;
 
 public class QuestionRepository {
-    QuestionDAO dao = new QuestionDAO();
+    private static final QuestionDAO dao = new QuestionDAO();
 
-    public int getCountQuestion() {
+    public static int getCountQuestion() {
         return dao.getCountQuestion();
     }
 
-    public List<Question> getAll(Category category) {
+    public static List<Question> getAll(Category category) {
         AnswerRepository answerRepository = new AnswerRepository();
         List<Question> questions = dao.getAll(category);
         for(Question question : questions) {
@@ -27,11 +27,11 @@ public class QuestionRepository {
         return questions;
     }
 
-    public Question get(int id) {
+    public static Question get(int id) {
         return dao.get(id);
     }
 
-    public boolean add(Question item) {
+    public static boolean add(Question item) {
         AnswerRepository answerRepository = new AnswerRepository();
         boolean flag = true;
         for(Answer proposal: item.getProposals())

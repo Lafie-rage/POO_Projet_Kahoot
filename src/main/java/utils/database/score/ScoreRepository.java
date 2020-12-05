@@ -1,12 +1,12 @@
 package utils.database.score;
 
-import quizz.model.Score;
-import utils.database.category.CategoryDAO;
+import model.Score;
+
 
 public class ScoreRepository {
-    ScoreDAO dao = new ScoreDAO();
+    private static final ScoreDAO dao = new ScoreDAO();
 
-    public boolean add(Score item) {
+    public static boolean add(Score item) {
         return dao.add(item);
     }
 }

@@ -1,7 +1,7 @@
 package utils.database.category;
 
 import utils.database.DBHelper;
-import quizz.model.Category;
+import model.Category;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDAO {
-    DBHelper dbHelper;
+class CategoryDAO {
+    private DBHelper dbHelper;
 
     public CategoryDAO() {
         try {
