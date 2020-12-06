@@ -1,10 +1,9 @@
 package utils.database.player;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
-import model.Category;
 import utils.database.DBHelper;
 
- import model.Player;
+import model.Player;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,13 +41,13 @@ class PlayerDAO {
     public List<Player> getAll() {
         List<Player> items = new ArrayList<>();
 
-        if(dbHelper != null) {
+        if (dbHelper != null) {
             try {
                 Statement database = dbHelper.getStatement();
                 ResultSet result = database.executeQuery("SELECT * FROM Player");
 
                 while (result.next()) {
-                    items.add(new Player(result.getInt("ID_Player"),  result.getString("login"), result.getString("password")));
+                    items.add(new Player(result.getInt("ID_Player"), result.getString("login"), result.getString("password")));
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -80,7 +79,7 @@ class PlayerDAO {
                 preparedStatement.setInt(1, id);
                 ResultSet result = preparedStatement.executeQuery();
                 if (result.first()) {
-                    return new Player(id, result.getString("login"),  result.getString("password"));
+                    return new Player(id, result.getString("login"), result.getString("password"));
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

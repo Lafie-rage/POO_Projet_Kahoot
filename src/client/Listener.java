@@ -1,23 +1,17 @@
 package client;
 
 
-import model.Answer;
-import model.Question;
-
-import java.io.IOException;
-import java.util.List;
-
 public class Listener extends Thread {
-    private PageGameattendez page;
+    private PageGame page;
     private Connection connection;
 
-    public Listener(PageGameattendez page, Connection connection) {
+    public Listener(PageGame page, Connection connection) {
         this.page = page;
         this.connection = connection;
     }
 
-    @Override
-    public void run() {
+    //@Override
+    /*public void run() {
         while (!currentThread().isInterrupted()) {
             try {
                 Question question = (Question) connection.getInput().readObject();
@@ -37,5 +31,5 @@ public class Listener extends Thread {
             }
         }
         this.interrupt();
-    }
+    }*/
 }

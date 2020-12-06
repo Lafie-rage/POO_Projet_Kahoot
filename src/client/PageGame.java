@@ -1,64 +1,47 @@
 package client;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PageGame extends JDialog {
+public class PageGame {
+    private final MainPage context;
     private JPanel contentPane;
-    private JButton buttonOK;
-    private JButton buttonCancel;
+    private JButton buttonExit;
+    private JButton buttonProp1;
+    private JButton buttonProp2;
+    private JButton buttonProp3;
+    private JButton buttonProp4;
+    private JTextArea questionField;
+    private JTextArea prop1Field;
+    private JTextArea prop2Field;
+    private JTextArea prop3Field;
+    private JTextArea prop4Field;
 
-    public PageGame() {
-        setContentPane(contentPane);
-        setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
+    public PageGame(MainPage context) {
+        this.context = context;
+        buttonProp1.addActionListener(e -> {
 
-        buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
         });
 
-        buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
+        buttonProp2.addActionListener(e -> {
+
         });
 
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
+        buttonProp3.addActionListener(e -> {
+
         });
 
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        buttonProp4.addActionListener(e -> {
+
+        });
+
+        buttonExit.addActionListener(e -> {
+
+        });
     }
 
-    private void onOK() {
-        // add your code here
-        dispose();
-    }
-
-    private void onCancel() {
-        // add your code here if necessary
-        dispose();
-    }
-
-    public static void main(String[] args) {
-        PageGame dialog = new PageGame();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
-    
     public JPanel getContentPane() {
-        return contentPane;
+        return this.contentPane;
     }
 }
