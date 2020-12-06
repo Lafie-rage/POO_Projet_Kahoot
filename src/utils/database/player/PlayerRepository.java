@@ -26,4 +26,11 @@ public class PlayerRepository {
     public static int add(Player item) {
         return dao.add(item);
     }
+
+    public static Player logon(String login,String password){
+        int idPlayer=dao.logon(login,password);
+        if (idPlayer>=0)
+            return PlayerRepository.get(idPlayer);
+        return null;
+    }
 }

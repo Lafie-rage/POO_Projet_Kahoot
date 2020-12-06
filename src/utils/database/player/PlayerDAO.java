@@ -74,7 +74,7 @@ class PlayerDAO {
 
     public Player get(int id) {
         if (dbHelper != null) {
-            String query = "SELECT name, pseudo, password FROM Player WHERE idPlayer = ?";
+            String query = "SELECT login, password FROM Player WHERE ID_Player = ?";
             try {
                 PreparedStatement preparedStatement = dbHelper.getPreparedStatement(query);
                 preparedStatement.setInt(1, id);
@@ -93,8 +93,8 @@ class PlayerDAO {
         if (dbHelper != null) {
             try {
                 PreparedStatement preparedStatement = dbHelper.getPreparedStatement("INSERT INTO Player(login, password) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
-                preparedStatement.setString(2, item.getPseudo());
-                preparedStatement.setString(3, item.getPassword());
+                preparedStatement.setString(1, item.getPseudo());
+                preparedStatement.setString(2, item.getPassword());
                 if (preparedStatement.executeUpdate() == 1) {
                     ResultSet res = preparedStatement.getGeneratedKeys();
                     if (res.first())
@@ -108,5 +108,24 @@ class PlayerDAO {
             return -1;
         }
         return -1;
+    }
+
+    public int logon(String login,String password){
+        if (dbHelper != null) {
+            String query = "SELECT ID_Player FROM Player WHERE login = ? and password = ?";
+            try {
+                PreparedStatement preparedStatement = dbHelper.getPreparedStatement(query);
+                preparedStatement.setString(1, login);
+                preparedStatement.setString(2, password);
+                ResultSet result = preparedStatement.executeQuery();
+                if (result.first()) {
+                    return result.getInt("ID_Player");
+                }
+            } catch (SQLException throwables) {
+                return Integer.MIN_VALUE;
+            }
+        }
+        return -1;
+
     }
 }
