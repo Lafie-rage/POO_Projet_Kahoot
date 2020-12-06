@@ -1,5 +1,8 @@
 package client;
 
+import model.Player;
+import utils.database.player.PlayerRepository;
+
 import javax.swing.*;
 
 public class PageLogin {
@@ -14,10 +17,16 @@ public class PageLogin {
         this.context = context;
 
         buttonLogin.addActionListener(e -> {
-            // Gestion des log valides
-            context.loadGamePage();
+            String login = usernameField.getText();
+            String password = String.valueOf(passwordField.getPassword());
+            Player player = PlayerRepository.logon(login,password);
+            if(player!=null)
+                context.loadGamePage();
+            else
+                JOptionPane.showMessageDialog(context, "Incorrect username or password.");
+            passwordField.setText("");
         });
-
+        
         buttonExit.addActionListener(e -> {
             context.dispose();
         });
