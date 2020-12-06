@@ -1,6 +1,10 @@
 package client;
 
 
+import model.Question;
+
+import java.io.IOException;
+
 public class Listener extends Thread {
     private PageGame page;
     private Connection connection;
@@ -10,26 +14,21 @@ public class Listener extends Thread {
         this.connection = connection;
     }
 
-    //@Override
-    /*public void run() {
+    @Override
+    public void run() {
         while (!currentThread().isInterrupted()) {
             try {
                 Question question = (Question) connection.getInput().readObject();
-                if(question != null) {
-                    page.updateQuestionText(question.getText());
-                    List<Answer> proposals = question.getProposals();
-                    page.updatePropField1Text(proposals.get(0).getText());
-                    page.updatePropField2Text(proposals.get(1).getText());
-                    page.updatePropField3Text(proposals.get(2).getText());
-                    page.updatePropField4Text(proposals.get(3).getText());
+                if (question != null) {
                 }
-            } catch(IOException e) {
+            } catch (IOException e) {
                 this.interrupt();
                 e.printStackTrace();
-            } catch(ClassNotFoundException e) {
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
         this.interrupt();
-    }*/
+
+    }
 }
