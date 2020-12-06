@@ -26,7 +26,7 @@ public class PageLogin {
                 JOptionPane.showMessageDialog(context, "Incorrect username or password.");
             passwordField.setText("");
         });
-        
+
         buttonExit.addActionListener(e -> {
             context.dispose();
         });
