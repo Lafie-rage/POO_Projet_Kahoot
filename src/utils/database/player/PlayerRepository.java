@@ -23,8 +23,9 @@ public class PlayerRepository {
         return dao.get(id);
     }
 
-    public static int add(Player item) {
-        return dao.add(item);
+    public static boolean add(Player item) {
+        if (dao.add(item)<0) return false;
+        return true;
     }
 
     public static Player logon(String login,String password){
@@ -32,5 +33,11 @@ public class PlayerRepository {
         if (idPlayer>=0)
             return PlayerRepository.get(idPlayer);
         return null;
+    }
+
+    public static boolean remove(int id){
+        if(dao.remove(id)==1)
+            return true;
+        return false;
     }
 }

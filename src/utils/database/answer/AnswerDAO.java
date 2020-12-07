@@ -81,4 +81,24 @@ import java.util.List;
             return false;
         }
     }
+
+    public int removeFromCategory(int id){
+
+        if (dbHelper != null) {
+            String query = "DELETE Answer FROM Answer " +
+                    "INNER JOIN proposition ON answer.ID_answer = proposition.answer_ID_answer " +
+                    "INNER JOIN question ON proposition.QUESTION_ID_QUESTION = question.ID_QUESTION " +
+                    "WHERE question.Category_ID_Category = ?";
+            try {
+                PreparedStatement preparedStatement = dbHelper.getPreparedStatement(query);
+                preparedStatement.setInt(1, id);
+                preparedStatement.executeUpdate();
+                return 1;
+            } catch (SQLException throwables) {
+                return Integer.MIN_VALUE;
+            }
+        }
+        return -1;
+
+    }
 }

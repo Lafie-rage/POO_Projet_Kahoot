@@ -127,4 +127,20 @@ class PlayerDAO {
         return -1;
 
     }
+
+    public int remove(int id){
+        if (dbHelper != null) {
+            String query = "DELETE FROM Player where ID_Player = ?";
+            try {
+                PreparedStatement preparedStatement = dbHelper.getPreparedStatement(query);
+                preparedStatement.setInt(1, id);
+                preparedStatement.executeUpdate();
+                return 1;
+            } catch (SQLException throwables) {
+                return Integer.MIN_VALUE;
+            }
+        }
+        return -1;
+
+    }
 }

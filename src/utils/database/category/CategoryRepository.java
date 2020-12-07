@@ -1,7 +1,9 @@
 package utils.database.category;
 
+import model.Answer;
 import model.Category;
 import model.Question;
+import utils.database.answer.AnswerRepository;
 import utils.database.question.QuestionRepository;
 
 import java.util.List;
@@ -31,6 +33,14 @@ public class CategoryRepository {
                     flag = false;
             return flag;
         }
+        return false;
+    }
+
+    public static boolean remove(int id){
+
+        if(AnswerRepository.removeFromCategory(id))
+            if(dao.remove(id)>0)
+                return true;
         return false;
     }
 }

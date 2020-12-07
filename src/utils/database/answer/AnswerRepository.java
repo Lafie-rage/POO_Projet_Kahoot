@@ -36,4 +36,9 @@ public class AnswerRepository {
     public static boolean link(Answer item, Question question) {
         return dao.link(item, question);
     }
+
+    public static boolean removeFromCategory(int id){
+        if (dao.removeFromCategory(id)>0) return true;
+        return false;
+    }
 }

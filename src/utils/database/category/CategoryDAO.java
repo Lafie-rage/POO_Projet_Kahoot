@@ -72,4 +72,19 @@ class CategoryDAO {
         }
         return -1;
     }
+    public int remove(int id){
+        if (dbHelper != null) {
+            String query = "DELETE FROM Category where ID_Category = ?";
+            try {
+                PreparedStatement preparedStatement = dbHelper.getPreparedStatement(query);
+                preparedStatement.setInt(1, id);
+                preparedStatement.executeUpdate();
+                return 1;
+            } catch (SQLException throwables) {
+                return Integer.MIN_VALUE;
+            }
+        }
+        return -1;
+
+    }
 }
