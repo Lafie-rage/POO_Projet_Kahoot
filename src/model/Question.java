@@ -43,6 +43,10 @@ public class Question extends Option implements Comparable<Question>{
         return new ArrayList<>(proposals);
     }
 
+    public int getCorrectAnswerIndex() {
+        return this.proposals.indexOf(correctAnswer);
+    }
+
     public Category getCategory() {
         return this.category;
     }

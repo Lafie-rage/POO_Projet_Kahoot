@@ -5,7 +5,7 @@ import utils.database.player.PlayerRepository;
 
 import javax.swing.*;
 
-public class PageLogin {
+public class PageLogin implements Page {
     private final MainPage context;
     private JTextField usernameField;
     private JButton buttonLogin;
@@ -21,7 +21,7 @@ public class PageLogin {
             String password = String.valueOf(passwordField.getPassword());
             Player player = PlayerRepository.logon(login,password);
             if(player!=null)
-                context.loadGamePage();
+                context.loadLobbyPage(player);
             else
                 JOptionPane.showMessageDialog(context, "Incorrect username or password.");
             passwordField.setText("");
@@ -32,7 +32,13 @@ public class PageLogin {
         });
     }
 
+    @Override
     public JPanel getContentPane() {
         return this.contentPane;
+    }
+
+    @Override
+    public void close() {
+        context.close();
     }
 }

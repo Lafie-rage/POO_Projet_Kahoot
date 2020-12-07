@@ -1,22 +1,25 @@
 package client;
 
-import model.Player;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class Connection {
-    private Player player;
+    private final String HOST = "127.0.0.1";
+    private final int PORT = 60_000;
     private Socket server;
     private ObjectInputStream input;
     private ObjectOutputStream output;
 
-    public Connection(Socket server) throws IOException {
-        this.server = server;
-        input = new ObjectInputStream(server.getInputStream());
-        output = new ObjectOutputStream(server.getOutputStream());
+    public Connection() {
+        try {
+            this.server = new Socket(HOST, PORT);
+            input = new ObjectInputStream(server.getInputStream());
+            output = new ObjectOutputStream(server.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ObjectInputStream getInput() {

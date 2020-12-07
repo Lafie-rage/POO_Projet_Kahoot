@@ -10,6 +10,10 @@ public class Score {
         this.game = game;
     }
 
+    public Score(Player player) {
+        this.player = player;
+    }
+
     public int getScore() {
         return this.score;
     }
