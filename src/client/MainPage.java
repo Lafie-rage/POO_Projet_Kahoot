@@ -39,7 +39,8 @@ public class MainPage extends JFrame {
 
     @Override
     public void dispose() {
-        this.connection.close();
+        if(connection != null)
+            this.connection.close();
         super.dispose();
     }
 
