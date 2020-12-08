@@ -1,20 +1,28 @@
 package client;
 
+import utils.Commons;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * Class representant la connexion entre le serveur et le client.
+ * Cette classe sert uniquement à définir le socket et ses streams d'entrée et sortie.
+ */
 public class Connection {
-    private final String HOST = "127.0.0.1";
-    private final int PORT = 60_000;
     private Socket server;
     private ObjectInputStream input;
     private ObjectOutputStream output;
 
+    /**
+     * Ouvre le socket et crée les streams associés.
+     * Si le serveur n'est pas joignable, interruption du programme et affichage de l'exception.
+     */
     public Connection() {
         try {
-            this.server = new Socket(HOST, PORT);
+            this.server = new Socket(Commons.HOST, Commons.PORT);
             input = new ObjectInputStream(server.getInputStream());
             output = new ObjectOutputStream(server.getOutputStream());
         } catch (IOException e) {
@@ -30,6 +38,9 @@ public class Connection {
         return this.output;
     }
 
+    /**
+     * Ferme le socket et les streams associées à celui-ci.
+     */
     public void close() {
         try {
             input.close();

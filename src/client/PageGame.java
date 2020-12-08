@@ -10,7 +10,7 @@ import java.util.List;
 public class PageGame implements Page {
     private final MainPage context;
     private final List<Question> questions;
-    private final ObjectOutputStream output;
+    private final GameListener listener;
     private Question currentQuestion;
     private Iterator<Question> iterator;
     private JPanel contentPane;
@@ -25,13 +25,18 @@ public class PageGame implements Page {
     private JTextArea prop3Field;
     private JTextArea prop4Field;
 
+    /**
+     * Définit le context de la vue et les actions liées aux boutons sur cette vue.
+     * Ce constructeur définit également la liste des questions de la partie ainsi qu'un iterator sur cette liste.
+     * @param context la MainPage de l'application
+     * @param questions la liste des questions de la partie en cours.
+     */
     public PageGame(MainPage context, List<Question> questions) {
         this.context = context;
+        this.listener = new GameListener(this, context.getConnection());
         this.questions = questions;
-        this.output = context.getOutput();
         iterator = questions.iterator();
-        if (iterator.hasNext())
-            loadQuestion();
+        loadQuestion();
         buttonProp1.addActionListener(e -> {
             checkQuestion(0);
         });
@@ -53,15 +58,27 @@ public class PageGame implements Page {
         });
     }
 
+    /**
+     * Affiche la prochaine question ou retourne au lobby si la partie est finie.
+     */
     private void loadQuestion() {
-        currentQuestion = iterator.next();
-        questionField.setText(currentQuestion.getText());
-        prop1Field.setText(currentQuestion.getProposals().get(0).getText());
-        prop2Field.setText(currentQuestion.getProposals().get(1).getText());
-        prop3Field.setText(currentQuestion.getProposals().get(2).getText());
-        prop4Field.setText(currentQuestion.getProposals().get(3).getText());
+        if(iterator.hasNext()) {
+            currentQuestion = iterator.next();
+            questionField.setText(currentQuestion.getText());
+            prop1Field.setText(currentQuestion.getProposals().get(0).getText());
+            prop2Field.setText(currentQuestion.getProposals().get(1).getText());
+            prop3Field.setText(currentQuestion.getProposals().get(2).getText());
+            prop4Field.setText(currentQuestion.getProposals().get(3).getText());
+        } else {
+            context.returnToLobby();
+        }
     }
 
+    /**
+     * Vérifie si la réponse fournie par l'utilisateur est la bonne.
+     * Met à jour le champs score
+     * @param index
+     */
     private void checkQuestion(int index) {
         if (currentQuestion.getCorrectAnswerIndex() == index)
             context.addPoint();
@@ -73,8 +90,11 @@ public class PageGame implements Page {
         return this.contentPane;
     }
 
+    /**
+     * Permet la fermeture proprement de la vue ainsi que de la connection.
+     */
     @Override
     public void close() {
-        context.close();
+        context.dispose();
     }
 }

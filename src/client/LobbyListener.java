@@ -5,11 +5,17 @@ import model.Question;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Listener sur l'input du client pour la vue lobby.
+ */
 public class LobbyListener extends Listener<PageLobby> {
     public LobbyListener(PageLobby page, Connection connection) {
         super(page, connection);
     }
 
+    /**
+     * Attente d'un message de la part du server.
+     */
     @Override
     public void run() {
         while (!currentThread().isInterrupted()) {
@@ -19,7 +25,7 @@ public class LobbyListener extends Listener<PageLobby> {
                         ((List<?>) objectMessage).size() > 0 && // check if it's a List<Question>
                         ((List<?>) objectMessage).get(0) instanceof Question) {
                     List<Question> questions = (List<Question>) objectMessage;
-                    page.launchGame(questions);
+                    context.launchGame(questions);
                 }
             } catch (IOException e) {
                 this.interrupt();

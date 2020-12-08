@@ -1,14 +1,18 @@
 package client;
 
-import model.Question;
-
 import java.io.IOException;
 
-public class GameListener extends Listener<PageGame>{
+/**
+ * Listener sur l'input du client pour la vue game.
+ */
+public class GameListener extends Listener<PageGame> {
     public GameListener(PageGame page, Connection connection) {
         super(page, connection);
     }
 
+    /**
+     * Attente d'un message de la part du server.
+     */
     @Override
     public void run() {
         while (!currentThread().isInterrupted()) {
@@ -16,8 +20,8 @@ public class GameListener extends Listener<PageGame>{
                 Object objectMessage = connection.getInput().readObject();
                 if (objectMessage instanceof String) {
                     String message = (String) objectMessage;
-                    if(message.equals("ENDING_CONNECTION")) {
-                        page.close();
+                    if (message.equals("ENDING_CONNECTION")) {
+                        context.close();
                     }
                 }
             } catch (IOException e) {
