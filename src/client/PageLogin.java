@@ -37,7 +37,7 @@ public class PageLogin implements Page {
             context.dispose();
         });
 
-        contentPane.addKeyListener(new KeyAdapter() {
+        passwordField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {

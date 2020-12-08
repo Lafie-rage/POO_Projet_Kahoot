@@ -35,17 +35,6 @@ public class PageLobby implements Page {
     }
 
     /**
-     * Definit le context de la vue et les actions liees aux boutons sur cette vue.
-     * Ce constructeur permet l'affichage du lobby lors de son acces apres avoir finit une partie precedente.
-     * @param context la MainPage de l'application
-     * @param lastScore le score du joueur connecte
-     */
-    public PageLobby(MainPage context, Score lastScore) {
-        this(context);
-        scoreField.setText("Your last score was : " + lastScore.getScore() + ". What an incredible one !");
-    }
-
-    /**
      * Affiche la vue de la partie.
      * Cette methode est appellee lorsque le serveur notifie le lancement de la partie.
      * @param questions la liste des questions de la partie qui va se lancer.

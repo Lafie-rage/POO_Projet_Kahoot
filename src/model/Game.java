@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  * Classe modele representant la donnee telle qu'elle est stockee dans la BDD.
  */
-public class Game {
+public class Game implements Serializable {
     private int id;
     private int nbQuestions = 1; // At least one question
     private Date date = new Date(Calendar.getInstance().getTime().getTime()); // Now date

@@ -1,6 +1,9 @@
 package server;
 
 import model.Player;
+import model.Score;
+import utils.Commons;
+import utils.database.score.ScoreRepository;
 
 import java.io.*;
 import java.net.Socket;
@@ -33,38 +36,6 @@ public class Connection extends Thread
 
     public Player getPlayer() {
         return player;
-    }
-
-    // Réécriture de la méthode "run" de thread (décrit le code exécuté par le thread des connections)
-    @Override
-    public void run()
-    {
-        while (true)
-        {
-            try
-            {
-                Object line = ois.readObject();
-                if (line!=null)
-                {
-                    if(line instanceof Player)
-                    {
-                        player = (Player) line;
-                        Lobby.addPlayerInLobby(this);
-
-                        //broadcastMessage(line);
-                    }
-
-                }
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-            catch (ClassNotFoundException e)
-            {
-                e.printStackTrace();
-            }
-        }
     }
 
     // méthode diffusant à tous les joueurs connectés au lobby un objet
@@ -130,12 +101,34 @@ public class Connection extends Thread
     {
         try
         {
+            oos.writeObject(Commons.ENDING_CONNECTION_SIGNAL);
             ois.close();
             oos.close();
             socket.close();
         }
         catch (IOException e)
         {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run() {
+        try {
+            Object objectMessage;
+            while((objectMessage = getOis().readObject()) != null) {
+                synchronized (this) {
+                    if(objectMessage instanceof Score) {
+                        Score score = (Score)objectMessage;
+                        System.out.println("Score :" + score.getScore());
+                        score.setGame(Room.game);
+                        ScoreRepository.add(score);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            close();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

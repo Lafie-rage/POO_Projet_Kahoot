@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class Option implements Serializable {
     protected int id;
-    private String text;
+    protected String text;
 
     public Option(){}
 

@@ -50,4 +50,18 @@ public class Connection {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Ferme les socket et les streams apres avoir notifie le serveur de cette fermeture.
+     */
+    public void closeAndNotify() {
+        try {
+            output.writeObject(Commons.ENDING_CONNECTION_SIGNAL);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            close();
+        }
+    }
 }

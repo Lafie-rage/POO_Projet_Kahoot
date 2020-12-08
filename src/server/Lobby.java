@@ -1,11 +1,13 @@
 package server;
 
+import utils.Commons;
+
 import java.util.*;
 
 public class Lobby extends Thread
 {
 
-    private Room room ;
+    private static Room room;
     private static Queue<Connection> playerInLobby= new LinkedList<>();;
 
     public Lobby()
@@ -24,14 +26,14 @@ public class Lobby extends Thread
     {
         System.out.println("rentre");
         playerInLobby.add(con);
-       /* if(playerInLobby.size()==Server.maxPlayerInRoom)
+        if(playerInLobby.size()==Commons.MAX_PLAYER_IN_ROOM)
         {
-           this.sendToRoom();
-        }*/
+            sendToRoom();
+        }
     }
 
     // méthode appelée afin de transférer les connexions des joueurs du lobby vers la salle de jeu (et les retire de la liste des connectés au lobby)
-    public void sendToRoom()
+    public static void sendToRoom()
     {
         System.out.println("10 in lobby");
         room = new Room();
@@ -40,7 +42,7 @@ public class Lobby extends Thread
         // ajout des joueurs à la liste des présents dans la salle de jeu
         Iterator iterator = playerInLobby.iterator();
         int i=0;
-        while (iterator.hasNext() && i<Server.maxPlayerInRoom)
+        while (iterator.hasNext() && i< Commons.MAX_PLAYER_IN_ROOM)
         {
             Connection currentCon = (Connection) iterator.next();
             room.addPlayerInRoom(currentCon);

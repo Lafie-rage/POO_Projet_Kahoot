@@ -5,6 +5,7 @@ import model.Question;
 import model.Score;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,8 +26,14 @@ public class MainPage extends JFrame {
     public MainPage() {
         setContentPane(new PageLogin(this).getContentPane());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(1000, 1000));
+        this.setResizable(false);
         pack();
         setVisible(true);
+    }
+
+    public int getScore() {
+        return score.getScore();
     }
 
     /**
@@ -52,20 +59,6 @@ public class MainPage extends JFrame {
     }
 
     /**
-     * Page de retour au lobby d'attente de partie. Elle permet d'appeler la page lobby en transmettant le score.
-     */
-    public void returnToLobby() {
-        try {
-            connection.getOutput().writeObject(score);
-            setContentPane(new PageLobby(this, score).getContentPane());
-            validate();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    /**
      * Methode d'ajout d'un point au score.
      */
     public void addPoint() {
@@ -78,7 +71,7 @@ public class MainPage extends JFrame {
     @Override
     public void dispose() {
         if (connection != null)
-            this.connection.close();
+            this.connection.closeAndNotify();
         super.dispose();
     }
 

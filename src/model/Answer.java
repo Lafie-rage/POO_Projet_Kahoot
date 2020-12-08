@@ -32,4 +32,8 @@ public class Answer extends Option implements Serializable {
         this.index = index;
     }
 
+    @Override
+    public String toString() {
+        return this.index + " - " + this.text;
+    }
 }

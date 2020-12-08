@@ -2,24 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="177581e3-589c-4b4f-b43e-7e400b3fac82" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/GameListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/LobbyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/LobbyListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/PageGame.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PageGame.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/PageGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PageGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/PageLobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PageLobby.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/PageLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PageLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Answer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Option.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Score.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/Lobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Lobby.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/Commons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Commons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/database/answer/AnswerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/database/answer/AnswerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/database/category/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/database/category/CategoryDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +53,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Application.Admin">
     <configuration name="Admin" type="Application" factoryName="Application">
@@ -102,7 +102,7 @@
       <workItem from="1607414337036" duration="2487000" />
       <workItem from="1607416934496" duration="263000" />
       <workItem from="1607425067572" duration="3174000" />
-      <workItem from="1607440315451" duration="3940000" />
+      <workItem from="1607440315451" duration="22802000" />
     </task>
     <servers />
   </component>

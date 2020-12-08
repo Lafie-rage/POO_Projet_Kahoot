@@ -9,15 +9,15 @@ import java.net.ServerSocket;
 
 public class Server extends Thread
 {
-    public static final int maxPlayerInRoom = 1;          // variable statique désignant le nombre de joueur nécessaires pour lancer une partie
+                        // variable statique désignant le nombre de joueur nécessaires pour lancer une partie
 
-    private Lobby lobby;                                    // déclaration de la future instance de la classe Lobby
-    private ServerSocket serverSocket;                      // déclaration de la future instance du socket serveur
+    private Lobby lobby;                                            // déclaration de la future instance de la classe Lobby
+    private ServerSocket serverSocket;                              // déclaration de la future instance du socket serveur
     //private static List<Connection> connectionList;
 
     public Server() throws IOException
     {
-        lobby =new Lobby();                                 // Instanciation du lobby
+        lobby = new Lobby();                                        // Instanciation du lobby
         this.serverSocket = new ServerSocket(Commons.PORT);         // Instanciation du socket serveur sur le port "port" (ici 60 000)
         //connectionList = new ArrayList<>();
     }
@@ -54,12 +54,7 @@ public class Server extends Thread
                 //synchronized(connectionList)
                 //{
                     //connectionList.add(con);
-                    con.start();
                     Lobby.addPlayerInLobby(con);
-                    if(Lobby.getListPlayerInLobby().size() == Server.maxPlayerInRoom)
-                    {
-                        lobby.sendToRoom();
-                    }
                 //}
             }
         }

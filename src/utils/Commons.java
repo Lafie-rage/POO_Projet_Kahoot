@@ -11,7 +11,10 @@ public class Commons {
 
     // region Communication signals
     public static final String ENDING_CONNECTION_SIGNAL = "ENDING_CONNECTION";
+    public static final String CLIENT_READY_SIGNAL = "CLIENT_READY";
     // endregion
 
-    public static final int NB_QUESTIONS = 10;
+    public static final int NB_QUESTIONS = 50;
+    public static final int MAX_PLAYER_IN_ROOM = 1;
+
 }

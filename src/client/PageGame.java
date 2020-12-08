@@ -1,14 +1,16 @@
 package client;
 
 import model.Question;
+import utils.Commons;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
 public class PageGame implements Page {
     private final MainPage context;
-    private final List<Question> questions;
+    private final int nbQuestion;
     private final GameListener listener;
     private Question currentQuestion;
     private Iterator<Question> iterator;
@@ -23,6 +25,7 @@ public class PageGame implements Page {
     private JTextArea prop2Field;
     private JTextArea prop3Field;
     private JTextArea prop4Field;
+    private JTextField scoreField;
 
     /**
      * Definit le context de la vue et les actions liees aux boutons sur cette vue.
@@ -34,7 +37,7 @@ public class PageGame implements Page {
         this.context = context;
         this.listener = new GameListener(this, context.getConnection());
         this.listener.start();
-        this.questions = questions;
+        nbQuestion = questions.size();
         iterator = questions.iterator();
         loadQuestion();
         buttonProp1.addActionListener(e -> {
@@ -59,18 +62,21 @@ public class PageGame implements Page {
     }
 
     /**
-     * Affiche la prochaine question ou retourne au lobby si la partie est finie.
+     * Affiche la prochaine question.
+     * S'il n'y a plus de question, affichage du score et fermeture de la page.
      */
     private void loadQuestion() {
         if(iterator.hasNext()) {
             currentQuestion = iterator.next();
             questionField.setText(currentQuestion.getText());
-            prop1Field.setText(currentQuestion.getProposals().get(0).getText());
-            prop2Field.setText(currentQuestion.getProposals().get(1).getText());
-            prop3Field.setText(currentQuestion.getProposals().get(2).getText());
-            prop4Field.setText(currentQuestion.getProposals().get(3).getText());
+            prop1Field.setText(currentQuestion.getProposals().get(0).toString());
+            prop2Field.setText(currentQuestion.getProposals().get(1).toString());
+            prop3Field.setText(currentQuestion.getProposals().get(2).toString());
+            prop4Field.setText(currentQuestion.getProposals().get(3).toString());
         } else {
-            context.returnToLobby();
+            JOptionPane.showMessageDialog(context, "Your score is " + context.getScore() + " on " + nbQuestion);
+            listener.interrupt();
+            context.dispose();
         }
     }
 
@@ -80,8 +86,10 @@ public class PageGame implements Page {
      * @param index
      */
     private void checkQuestion(int index) {
-        if (currentQuestion.getCorrectAnswerIndex() == index)
+        if (currentQuestion.getCorrectAnswerIndex() == index) {
             context.addPoint();
+            scoreField.setText("Score : " + context.getScore());
+        }
         loadQuestion();
     }
 
@@ -91,10 +99,11 @@ public class PageGame implements Page {
     }
 
     /**
-     * Permet la fermeture proprement de la vue ainsi que de la connection.
+     * Permet la fermeture de manière propre de la vue ainsi que de la connection lorsque la connexion au serveur est perdue.
      */
     @Override
     public void close() {
         context.dispose();
     }
+
 }
