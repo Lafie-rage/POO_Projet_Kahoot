@@ -2,6 +2,10 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Classe modele representant la donnee telle qu'elle est stockee dans la BDD.
+ * Implemente @see Serializable afin
+ */
 public class Score implements Serializable {
     private int score = 0;
     private Player player;
