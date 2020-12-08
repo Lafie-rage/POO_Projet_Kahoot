@@ -1,5 +1,9 @@
 package admin;
 
+/**
+ * Une Classe qui permet d'associer une valeur avec une cle.
+ * Utilise pour les listes déroulantes
+ */
 public class ComboKeyValue {
 
     private int key;

@@ -3,8 +3,14 @@ package admin;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * La page principale de la partie admin.
+ */
 public class MainPage extends JFrame {
 
+    /**
+     * Constructeur du conteneur de l'app admin, il affiche la page login par défaut.
+     */
     public MainPage() {
         setContentPane(new PageLogin(this).getContentPane());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,6 +21,10 @@ public class MainPage extends JFrame {
 
     }
 
+    /**
+     * Méthode permetant de choisir la page a afficher. Si l'argument n'est pas bon, l'application se ferme.
+     * @param option nom de la page à afficher (menu , user , quizz).
+     */
     public void changePage(String option) {
         switch (option){
             case "menu" :

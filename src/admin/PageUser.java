@@ -8,6 +8,11 @@ import utils.database.player.PlayerRepository;
 import javax.swing.*;
 import java.util.List;
 
+/**
+ * Vue de gestion des utilisateurs  de l'interface graphique de l'admin.
+ * Elle contient une reference vers le context (la MainPage) et vers les differents objects swing de la vue.
+ * Elle permet de visualiser les utilisateurs, de les supprimers et d'en créer des nouveaux'.
+ */
 public class PageUser {
     private final MainPage context;
     private JPanel contentPane;
@@ -19,7 +24,10 @@ public class PageUser {
     private JButton createButton;
     private JTextArea errorTextArea;
 
-
+    /**
+     * Definit le context de la vue et les actions liees aux boutons sur cette vue.
+     * @param context la référence vers la MainPage de l'application.
+     */
     public PageUser(MainPage context) {
         this.context = context;
         filluserField();
@@ -44,7 +52,9 @@ public class PageUser {
 
         });
     }
-
+    /**
+     * Permet de reinitialiser les differents champs de la page
+     */
     private void resetField(){
         userField.setText("");
         comboBox1.removeAllItems();
@@ -52,6 +62,11 @@ public class PageUser {
         loginField.setText("");
         passwordField.setText("");
     }
+    /**
+     * Permet d'afficher les utilisateurs  contenus dans la base de donnees
+     * Permet de remplir la liste déroulante pour afficher les utilisateurs dans celui-ci
+     * Seul le compte admin n'est pas afficher et ne peut être modifié
+     */
     private void  filluserField() {
         List<Player> listPlayer = PlayerRepository.getAll();
         for (Player item : listPlayer) {
