@@ -56,7 +56,7 @@ public class Server extends Thread
                 {
                     connectionList.add(con);
                     con.start();
-                    lobby.addPlayerInLobby(con);
+                    //lobby.addPlayerInLobby(con);
                 }
             }
         }
