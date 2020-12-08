@@ -47,7 +47,7 @@ class CategoryDAO {
                 preparedStatement.setInt(1, id);
                 ResultSet result = preparedStatement.executeQuery();
                 if (result.first()) {
-                    return new Category(id, result.getString("name"));
+                    return new Category(id, result.getString("TEXTE_Category"));
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
@@ -95,7 +95,7 @@ class CategoryDAO {
                 Statement statement = dbHelper.getStatement();
                 ResultSet result = statement.executeQuery(query);
                 if (result.first()) {
-                    return new Category(result.getInt("ID_Category"), result.getString("name"));
+                    return new Category(result.getInt("ID_Category"), result.getString("TEXTE_Category"));
                 }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();

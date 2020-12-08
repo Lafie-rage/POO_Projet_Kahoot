@@ -31,6 +31,9 @@ public class Connection extends Thread
         return oos;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
 
     // Réécriture de la méthode "run" de thread (décrit le code exécuté par le thread des connections)
     @Override

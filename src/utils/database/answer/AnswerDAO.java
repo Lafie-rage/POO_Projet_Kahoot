@@ -11,8 +11,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-  class AnswerDAO {
-    private  DBHelper dbHelper;
+class AnswerDAO {
+    private DBHelper dbHelper;
 
     public AnswerDAO() {
         try {
@@ -25,10 +25,10 @@ import java.util.List;
     public List<Answer> getAll(Question question) {
         List<Answer> items = new ArrayList<>();
 
-        if(dbHelper != null) {
+        if (dbHelper != null) {
             try {
                 String query = "SELECT ID_answer , TEXTE_answer  FROM Answer " +
-                        "INNER JOIN PROPOSITION ON answer_ID_answer = ID_answer " +
+                        "INNER JOIN Proposition ON answer_ID_answer = ID_answer " +
                         "WHERE QUESTION_ID_QUESTION = ?";
                 PreparedStatement preparedStatement = dbHelper.getPreparedStatement(query);
                 preparedStatement.setInt(1, question.getId());
@@ -73,7 +73,7 @@ import java.util.List;
 
     public boolean link(Answer item, Question question) {
         try {
-            PreparedStatement preparedStatement = dbHelper.getPreparedStatement("INSERT INTO PROPOSITION(answer_ID_answer, QUESTION_ID_QUESTION) VALUES (?, ?)");
+            PreparedStatement preparedStatement = dbHelper.getPreparedStatement("INSERT INTO Proposition(answer_ID_answer, QUESTION_ID_QUESTION) VALUES (?, ?)");
             preparedStatement.setInt(1, item.getId());
             preparedStatement.setInt(2, question.getId());
             return preparedStatement.execute();
@@ -82,12 +82,12 @@ import java.util.List;
         }
     }
 
-    public int removeFromCategory(int id){
+    public int removeFromCategory(int id) {
 
         if (dbHelper != null) {
             String query = "DELETE Answer FROM Answer " +
-                    "INNER JOIN proposition ON answer.ID_answer = proposition.answer_ID_answer " +
-                    "INNER JOIN question ON proposition.QUESTION_ID_QUESTION = question.ID_QUESTION " +
+                    "INNER JOIN Proposition ON answer.ID_answer = Proposition.answer_ID_answer " +
+                    "INNER JOIN question ON Proposition.QUESTION_ID_QUESTION = question.ID_QUESTION " +
                     "WHERE question.Category_ID_Category = ?";
             try {
                 PreparedStatement preparedStatement = dbHelper.getPreparedStatement(query);

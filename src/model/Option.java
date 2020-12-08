@@ -1,11 +1,15 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Classe abstraite dont hérite @see Answer et @see Question.
  */
-public class Option {
+public class Option implements Serializable {
     protected int id;
     private String text;
+
+    public Option(){}
 
     /**
      * Creation d'une option pour l'ajout en BDD, donc sans ID.

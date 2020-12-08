@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="177581e3-589c-4b4f-b43e-7e400b3fac82" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Connection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Page.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/PageGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PageGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/PageLobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PageLobby.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/PageLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PageLogin.java" afterDir="false" />
@@ -13,14 +12,26 @@
       <change beforePath="$PROJECT_DIR$/src/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Option.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Question.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Score.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/Connection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Connection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Commons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Commons.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/database/answer/AnswerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/database/answer/AnswerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/database/category/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/database/category/CategoryDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,7 +55,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Application.Admin">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="Admin" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="admin.MainPage" />
       <module name="POO_Projet_Kahoot" />
@@ -66,9 +77,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="POO_Projet_Kahoot" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Test" />
       <item itemvalue="Application.Admin" />
     </list>
   </component>
@@ -83,6 +102,7 @@
       <workItem from="1607414337036" duration="2487000" />
       <workItem from="1607416934496" duration="263000" />
       <workItem from="1607425067572" duration="3174000" />
+      <workItem from="1607440315451" duration="3940000" />
     </task>
     <servers />
   </component>
@@ -101,22 +121,15 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="WindowStateProjectService">
-    <state width="1877" height="210" key="GridCell.Tab.0.bottom" timestamp="1607436714822">
-      <screen x="-1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607436714822" />
-    <state width="1877" height="210" key="GridCell.Tab.0.center" timestamp="1607436714822">
-      <screen x="-1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="210" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607436714822" />
-    <state width="1877" height="210" key="GridCell.Tab.0.left" timestamp="1607436714821">
-      <screen x="-1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="210" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607436714821" />
-    <state width="1877" height="210" key="GridCell.Tab.0.right" timestamp="1607436714822">
-      <screen x="-1920" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1877" height="210" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1607436714822" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/LobbyListener.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

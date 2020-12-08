@@ -33,6 +33,7 @@ public class PageGame implements Page {
     public PageGame(MainPage context, List<Question> questions) {
         this.context = context;
         this.listener = new GameListener(this, context.getConnection());
+        this.listener.start();
         this.questions = questions;
         iterator = questions.iterator();
         loadQuestion();

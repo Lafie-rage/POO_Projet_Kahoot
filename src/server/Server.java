@@ -1,16 +1,15 @@
 package server;
 
+import utils.Commons;
+
 import java.io.*;
 
-
-import java.net.Socket;
 
 import java.net.ServerSocket;
 
 public class Server extends Thread
 {
-    public static final int maxPlayerInRoom = 10 ;          // variable statique désignant le nombre de joueur nécessaires pour lancer une partie
-    private static final int port=60000;                    // variable statique désignant le numéro de port utilisé pour se connecter au serveur
+    public static final int maxPlayerInRoom = 1;          // variable statique désignant le nombre de joueur nécessaires pour lancer une partie
 
     private Lobby lobby;                                    // déclaration de la future instance de la classe Lobby
     private ServerSocket serverSocket;                      // déclaration de la future instance du socket serveur
@@ -19,7 +18,7 @@ public class Server extends Thread
     public Server() throws IOException
     {
         lobby =new Lobby();                                 // Instanciation du lobby
-        this.serverSocket = new ServerSocket(port);         // Instanciation du socket serveur sur le port "port" (ici 60 000)
+        this.serverSocket = new ServerSocket(Commons.PORT);         // Instanciation du socket serveur sur le port "port" (ici 60 000)
         //connectionList = new ArrayList<>();
     }
 
@@ -36,7 +35,6 @@ public class Server extends Thread
             e.printStackTrace();
         }
     }
-
 
     /*public static synchronized List<Connection> getListConnexion()
     {

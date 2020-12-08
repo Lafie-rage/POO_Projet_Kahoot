@@ -25,9 +25,9 @@ public class Game {
      * @param category categorie jouee pendant la partie.
      */
     public Game(int nbQuestions, List<Player> players, Category category) {
+        this.category = category;
         setNbQuestion(nbQuestions);
         setListJoueurs(players);
-        this.category = category;
     }
 
     private void setNbQuestion(int nbQuestions) {

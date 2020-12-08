@@ -26,6 +26,10 @@ public class Score implements Serializable {
         }
     }
 
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
     public Player getPlayer() {
         return this.player;
     }

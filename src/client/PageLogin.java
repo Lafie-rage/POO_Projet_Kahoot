@@ -4,6 +4,8 @@ import model.Player;
 import utils.database.player.PlayerRepository;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * Vue de login de l'interface graphique du client.
@@ -27,20 +29,33 @@ public class PageLogin implements Page {
 
         // Clique sur le bouton de login.
         buttonLogin.addActionListener(e -> {
-            String login = usernameField.getText();
-            String password = String.valueOf(passwordField.getPassword());
-            Player player = PlayerRepository.logon(login,password);
-            if(player!=null)
-                context.loadLobbyPage(player);
-            else
-                JOptionPane.showMessageDialog(context, "Incorrect username or password.");
-            passwordField.setText("");
+            logMeIn();
         });
 
         // Clique sur le bouton exit.
         buttonExit.addActionListener(e -> {
             context.dispose();
         });
+
+        contentPane.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    logMeIn();
+                }
+            }
+        });
+    }
+
+    private void logMeIn() {
+        String login = usernameField.getText();
+        String password = String.valueOf(passwordField.getPassword());
+        Player player = PlayerRepository.logon(login,password);
+        if(player!=null)
+            context.loadLobbyPage(player);
+        else
+            JOptionPane.showMessageDialog(context, "Incorrect username or password.");
+        passwordField.setText("");
     }
 
     @Override

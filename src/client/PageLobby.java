@@ -28,6 +28,7 @@ public class PageLobby implements Page {
 
         // Clique sur le bouton exit.
         this.listener = new LobbyListener(this, context.getConnection());
+        this.listener.start();
         buttonExit.addActionListener(e -> {
             context.dispose();
         });

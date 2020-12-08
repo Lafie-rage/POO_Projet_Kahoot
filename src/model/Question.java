@@ -13,7 +13,7 @@ import java.util.List;
 public class Question extends Option implements Comparable<Question>, Serializable {
     private List<Answer> proposals = new ArrayList<>();
     private Answer correctAnswer;
-    private final Category category;
+    private Category category;
 
     /**
 

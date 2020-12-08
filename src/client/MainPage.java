@@ -23,7 +23,6 @@ public class MainPage extends JFrame {
      * Cree la connection et affiche la vue de login.
      */
     public MainPage() {
-        this.connection = new Connection();
         setContentPane(new PageLogin(this).getContentPane());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -36,6 +35,7 @@ public class MainPage extends JFrame {
      * @param player Le joueur connecte.
      */
     public void loadLobbyPage(Player player) {
+        this.connection = new Connection();
         this.score = new Score(player);
         setContentPane(new PageLobby(this).getContentPane());
         validate();

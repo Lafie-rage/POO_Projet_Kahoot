@@ -2,16 +2,18 @@ package model;
 
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
  * Classe modele representant la donnee telle qu'elle est stockee dans la BDD.
+ * Implemente @see Serializable
  */
-public class Category {
+public class Category implements Serializable {
     private int id;
-    private final String name;
+    private String name;
     private List<Question> questions = new ArrayList<>();
 
     /**
@@ -30,6 +32,12 @@ public class Category {
      */
     public Category(String name) {
         this.name = name;
+    }
+
+    public Category(int id, String name, List<Question> questions) {
+        this.id = id;
+        this.name = name;
+        this.questions = questions;
     }
 
     public int getId() {
