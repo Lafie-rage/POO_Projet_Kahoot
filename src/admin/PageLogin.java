@@ -22,7 +22,13 @@ public class PageLogin {
             String password = String.valueOf(passwordField.getPassword());
             Player player = PlayerRepository.logon(login,password);
             if(player!=null)
-                context.changePage("menu");
+            {
+                if (player.getId()==0)
+                    context.changePage("menu");
+                else
+                    JOptionPane.showMessageDialog(context, "You are not authorized to access the admin part.");
+            }
+
             else
                 JOptionPane.showMessageDialog(context, "Incorrect username or password.");
             passwordField.setText("");

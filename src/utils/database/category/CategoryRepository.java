@@ -16,9 +16,8 @@ public class CategoryRepository {
     }
 
     public static Category get(int id) {
-        QuestionRepository questionRepository = new QuestionRepository();
         Category item = dao.get(id);
-        item.setQuestions(questionRepository.getAll(item));
+        item.setQuestions(QuestionRepository.getAll(item));
         return item;
     }
 
@@ -42,5 +41,11 @@ public class CategoryRepository {
             if(dao.remove(id)>0)
                 return true;
         return false;
+    }
+
+    public static Category getRandomly(){
+        Category item = dao.getRandomly();
+        item.setQuestions(QuestionRepository.getAll(item));
+        return item;
     }
 }

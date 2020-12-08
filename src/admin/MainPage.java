@@ -9,7 +9,7 @@ public class MainPage extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-        changePage("quizz");
+
     }
 
     public void changePage(String option) {

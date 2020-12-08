@@ -52,16 +52,15 @@ public class PageUser {
         loginField.setText("");
         passwordField.setText("");
     }
-    private void  filluserField(){
-        List<Player> listPlayer=PlayerRepository.getAll();
-        for (Player item:listPlayer) {
-            userField.append(item.getPseudo()+"\n");
-            comboBox1.addItem(new ComboKeyValue(item.getId(),item.getPseudo()));
+    private void  filluserField() {
+        List<Player> listPlayer = PlayerRepository.getAll();
+        for (Player item : listPlayer) {
+            if (item.getId() != 0) {
+                userField.append(item.getPseudo() + "\n");
+                comboBox1.addItem(new ComboKeyValue(item.getId(), item.getPseudo()));
+            }
         }
-
-
     }
-
     public JPanel getContentPane() {
         return this.contentPane;
     }

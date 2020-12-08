@@ -87,4 +87,20 @@ class CategoryDAO {
         return -1;
 
     }
+
+    public Category getRandomly(){
+        if(dbHelper != null) {
+            String query = "SELECT * FROM Category ORDER BY RAND() LIMIT 1";
+            try {
+                Statement statement = dbHelper.getStatement();
+                ResultSet result = statement.executeQuery(query);
+                if (result.first()) {
+                    return new Category(result.getInt("ID_Category"), result.getString("name"));
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return null;
+    }
 }
