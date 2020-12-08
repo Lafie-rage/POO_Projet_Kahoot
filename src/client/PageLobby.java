@@ -8,8 +8,8 @@ import java.util.List;
 
 /**
  * Vue du lobby de l'interface graphique du client.
- * Elle contient une référence vers le context (la MainPage) et vers les différents objects swing de la vue.
- * Elle définit également les fonctions de mise à jour dynamique de la vue ainsi que de changement de vue.
+ * Elle contient une reference vers le context (la MainPage) et vers les differents objects swing de la vue.
+ * Elle definit egalement les fonctions de mise a jour dynamique de la vue ainsi que de changement de vue.
  */
 public class PageLobby implements Page {
     private final MainPage context;
@@ -19,8 +19,8 @@ public class PageLobby implements Page {
     private JTextArea scoreField;
 
     /**
-     * Définit le context de la vue et les actions liées aux boutons sur cette vue.
-     * Ce constructeur permet l'affichage du lobby avant l'accès à la 1ère partie du joueur depuis sa dernière connexion.
+     * Definit le context de la vue et les actions liees aux boutons sur cette vue.
+     * Ce constructeur permet l'affichage du lobby avant l'acces a la 1ere partie du joueur depuis sa derniere connexion.
      * @param context la MainPage de l'application
      */
     public PageLobby(MainPage context) {
@@ -34,10 +34,10 @@ public class PageLobby implements Page {
     }
 
     /**
-     * Définit le context de la vue et les actions liées aux boutons sur cette vue.
-     * Ce constructeur permet l'affichage du lobby lors de son accès après avoir finit une partie précédente.
+     * Definit le context de la vue et les actions liees aux boutons sur cette vue.
+     * Ce constructeur permet l'affichage du lobby lors de son acces apres avoir finit une partie precedente.
      * @param context la MainPage de l'application
-     * @param lastScore le score du joueur connecté
+     * @param lastScore le score du joueur connecte
      */
     public PageLobby(MainPage context, Score lastScore) {
         this(context);
@@ -46,7 +46,7 @@ public class PageLobby implements Page {
 
     /**
      * Affiche la vue de la partie.
-     * Cette méthode est appellée lorsque le serveur notifie le lancement de la partie.
+     * Cette methode est appellee lorsque le serveur notifie le lancement de la partie.
      * @param questions la liste des questions de la partie qui va se lancer.
      */
     public void launchGame(List<Question> questions) {

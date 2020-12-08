@@ -7,8 +7,8 @@ import javax.swing.*;
 
 /**
  * Vue de login de l'interface graphique du client.
- * Elle contient une référence vers le context (la MainPage) et vers les différents objects swing de la vue.
- * Elle définit également les fonctions de mise à jour dynamique de la vue ainsi que de changement de vue.
+ * Elle contient une reference vers le context (la MainPage) et vers les differents objects swing de la vue.
+ * Elle definit egalement les fonctions de mise a jour dynamique de la vue ainsi que de changement de vue.
  */
 public class PageLogin implements Page {
     private final MainPage context;
@@ -19,7 +19,7 @@ public class PageLogin implements Page {
     private JPanel contentPane;
 
     /**
-     * Définit le context de la vue et les actions liées aux boutons sur cette vue.
+     * Definit le context de la vue et les actions liees aux boutons sur cette vue.
      * @param context la MainPage de l'application
      */
     public PageLogin(MainPage context) {

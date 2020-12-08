@@ -3,7 +3,6 @@ package client;
 import model.Question;
 
 import javax.swing.*;
-import java.io.ObjectOutputStream;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,9 +25,9 @@ public class PageGame implements Page {
     private JTextArea prop4Field;
 
     /**
-     * Définit le context de la vue et les actions liées aux boutons sur cette vue.
-     * Ce constructeur définit également la liste des questions de la partie ainsi qu'un iterator sur cette liste.
-     * @param context la MainPage de l'application
+     * Definit le context de la vue et les actions liees aux boutons sur cette vue.
+     * Ce constructeur definit egalement la liste des questions de la partie ainsi qu'un iterator sur cette liste.
+     * @param context la MainPage de l'application.
      * @param questions la liste des questions de la partie en cours.
      */
     public PageGame(MainPage context, List<Question> questions) {
@@ -75,8 +74,8 @@ public class PageGame implements Page {
     }
 
     /**
-     * Vérifie si la réponse fournie par l'utilisateur est la bonne.
-     * Met à jour le champs score
+     * Verifie si la reponse fournie par l'utilisateur est la bonne.
+     * Met a jour le champs score
      * @param index
      */
     private void checkQuestion(int index) {

@@ -9,7 +9,7 @@ import java.net.Socket;
 
 /**
  * Class representant la connexion entre le serveur et le client.
- * Cette classe sert uniquement à définir le socket et ses streams d'entrée et sortie.
+ * Cette classe sert uniquement a definir le socket et ses streams d'entree et sortie.
  */
 public class Connection {
     private Socket server;
@@ -17,7 +17,7 @@ public class Connection {
     private ObjectOutputStream output;
 
     /**
-     * Ouvre le socket et crée les streams associés.
+     * Ouvre le socket et cree les streams associes.
      * Si le serveur n'est pas joignable, interruption du programme et affichage de l'exception.
      */
     public Connection() {
@@ -39,7 +39,7 @@ public class Connection {
     }
 
     /**
-     * Ferme le socket et les streams associées à celui-ci.
+     * Ferme le socket et les streams associees a celui-ci.
      */
     public void close() {
         try {
