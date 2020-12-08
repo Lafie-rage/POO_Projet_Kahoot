@@ -5,6 +5,7 @@ import model.Question;
 import model.Score;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -54,9 +55,14 @@ public class MainPage extends JFrame {
      * Page de retour au lobby d'attente de partie. Elle permet d'appeler la page lobby en transmettant le score.
      */
     public void returnToLobby() {
-        connection.getOutput().writeObject(score);
-        setContentPane(new PageLobby(this, score).getContentPane());
-        validate();
+        try {
+            connection.getOutput().writeObject(score);
+            setContentPane(new PageLobby(this, score).getContentPane());
+            validate();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -83,6 +89,5 @@ public class MainPage extends JFrame {
     public static void main(String[] args) {
         // ouverture de la l'interface graphique du client.
         MainPage mainPage = new MainPage();
-    }
     }
 }
