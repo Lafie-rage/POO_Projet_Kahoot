@@ -136,6 +136,7 @@ CREATE TABLE IF NOT EXISTS `player` (
 --
 
 INSERT INTO `player` (`ID_Player`, `login`, `password`) VALUES
+(0, 'admin', 'admin'),
 (3, 'user0', 'test'),
 (4, 'user1', 'test'),
 (5, 'user2', 'test'),
