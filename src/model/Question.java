@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Question extends Option implements Comparable<Question>{
+public class Question extends Option implements Comparable<Question>, Serializable {
 
     private List<Answer> proposals = new ArrayList<>();
     private Answer correctAnswer;

@@ -1,6 +1,8 @@
 package model;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private int id = -1; // default id value
     private String pseudo;
     private String password;
