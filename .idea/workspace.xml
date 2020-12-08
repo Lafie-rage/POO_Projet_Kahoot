@@ -9,6 +9,13 @@
       <change beforePath="$PROJECT_DIR$/src/client/PageGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PageGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/PageLobby.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PageLobby.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/PageLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/PageLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Answer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Option.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Score.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

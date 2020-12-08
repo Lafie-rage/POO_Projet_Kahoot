@@ -6,26 +6,31 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Classe modele representant la donnee telle qu'elle est stockee dans la BDD.
+ */
 public class Category {
     private int id;
     private final String name;
     private List<Question> questions = new ArrayList<>();
 
+    /**
+     * Creation d'une categorie recuperee en BDD.
+     * @param id id en BDD.
+     * @param name nom de la categorie.
+     */
     public Category(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Category(int id, String name, List<Question> questions) {
-        this(id, name);
-        setQuestions(questions);
-    }
-
+    /**
+     * Creation d'une categorie pour l'ajout en BDD, donc sans ID.
+     * @param name nom de la categorie.
+     */
     public Category(String name) {
         this.name = name;
     }
-
-
 
     public int getId() {
         return id;
@@ -43,11 +48,17 @@ public class Category {
         return new ArrayList<>(this.questions);
     }
 
+    /**
+     * Renvoit une liste de questions choisies au hasard parmis celles de la categorie courante.
+     * @param nbQuestions nombre de questions à renvoyer.
+     * @return une liste de nbQuestions. Si nbQuestions était plus grand que la taille de la liste, retourne toute la liste.
+     */
     public List<Question> getQuestions(int nbQuestions) {
         List<Question> questions = new ArrayList<>();
         List<Integer> alreadyUsed = new ArrayList<>();
         int random;
-        nbQuestions = Math.min(nbQuestions, this.questions.size());
+        if(nbQuestions > questions.size())
+            return getQuestions();
         for (int i = 0; i < nbQuestions; i++) {
             do {
                 random = (int) (Math.random() * this.questions.size());
@@ -66,12 +77,12 @@ public class Category {
                     this.questions.add(question);
     }
 
+    /**
+     * Ajout d'une question à la liste.
+     * @param question question à ajouter.
+     */
     public void addQuestion(Question question) {
         this.questions.add(question);
     }
 
-    @Override
-    public String toString() {
-        return this.getId() + " - " + this.getName();
-    }
 }

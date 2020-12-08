@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Classe modele representant la donnee telle qu'elle est stockee dans la BDD.
+ */
 public class Game {
     private int id;
     private int nbQuestions = 1; // At least one question
@@ -13,6 +16,14 @@ public class Game {
     private List<Question> questions = new ArrayList<>(); // Questions that will be asked to the whole players of the current game.
     private Category category;
 
+    /**
+     * Creation d'une nouvelle partie.
+     * L'id est definie plus tard.
+     * La date est definie a maintenant.
+     * @param nbQuestions nombre de question demandees pendant la partie.
+     * @param players liste des joueurs dans la partie.
+     * @param category categorie jouee pendant la partie.
+     */
     public Game(int nbQuestions, List<Player> players, Category category) {
         setNbQuestion(nbQuestions);
         setListJoueurs(players);

@@ -2,16 +2,30 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Classe modele representant la donnee telle qu'elle est stockee dans la BDD.
+ */
 public class Player implements Serializable {
-    private int id = -1; // default id value
-    private String pseudo;
-    private String password;
+    private final String pseudo;
+    private final String password;
+    private int id;
 
-    public Player( String pseudo, String password) {
+    /**
+     * Creation d'un joueur pour l'ajout en BDD, donc sans ID.
+     * @param pseudo pseudo du joueur.
+     * @param password mot de passe du joueur.
+     */
+    public Player(String pseudo, String password) {
         this.pseudo = pseudo;
         this.password = password;
     }
 
+    /**
+     * Creation d'un joueur recupere en BDD.
+     * @param id id en BDD.
+     * @param pseudo pseudo du joueur.
+     * @param password mot de passe du joueur.
+     */
     public Player(int id, String pseudo, String password) {
         this(pseudo, password);
         this.id = id;
@@ -33,8 +47,4 @@ public class Player implements Serializable {
         return this.password;
     }
 
-    @Override
-    public String toString() {
-        return id + " - " + pseudo;
-    }
 }
