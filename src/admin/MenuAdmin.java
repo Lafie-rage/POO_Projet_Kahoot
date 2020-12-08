@@ -22,7 +22,6 @@ public class MenuAdmin {
     public MenuAdmin(MainPage context) {
         this.context = context;
 
-
         buttonUser.addActionListener(e -> {
             context.changePage("user");
         });

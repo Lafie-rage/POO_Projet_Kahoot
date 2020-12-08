@@ -36,7 +36,6 @@ public class PageLogin {
                 else
                     JOptionPane.showMessageDialog(context, "You are not authorized to access the admin part.");
             }
-
             else
                 JOptionPane.showMessageDialog(context, "Incorrect username or password.");
             passwordField.setText("");

@@ -24,6 +24,8 @@ public class PageQuizz {
     private JButton createButton;
     private JTextArea errorTextArea;
     private JButton searchButton;
+    private JButton exitButton;
+    private JButton menuButton;
 
 
     /**
@@ -36,7 +38,7 @@ public class PageQuizz {
 
         deleteButton.addActionListener(e -> {
             ComboKeyValue currentKey = (ComboKeyValue) comboBox1.getSelectedItem();
-            System.out.println(CategoryRepository.remove(currentKey.getKey()));
+            CategoryRepository.remove(currentKey.getKey());
             resetField();
             filluserField();
         });
@@ -45,8 +47,8 @@ public class PageQuizz {
             choix.setFileSelectionMode(JFileChooser.FILES_ONLY);
             int retour=choix.showOpenDialog(context);
             if(retour==JFileChooser.APPROVE_OPTION){
-                String nameFile = choix.getSelectedFile().getAbsolutePath();
-                loginField.setText(nameFile);
+                String absolutePath = choix.getSelectedFile().getAbsolutePath();
+                loginField.setText(absolutePath);
             }
         });
         createButton.addActionListener(e -> {
@@ -56,6 +58,12 @@ public class PageQuizz {
                 errorTextArea.setText("Unable to create new quizz");
             filluserField();
 
+        });
+        menuButton.addActionListener(e -> {
+           context.changePage("menu");
+        });
+        exitButton.addActionListener(e -> {
+            context.dispose();
         });
     }
 

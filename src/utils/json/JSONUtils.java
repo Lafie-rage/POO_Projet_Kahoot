@@ -1,6 +1,5 @@
 package utils.json;
 
-
 import model.Answer;
 import model.Category;
 import model.Question;
@@ -23,13 +22,13 @@ public class JSONUtils {
     /**
      * Méthode statique permetant de charger un json, si le json est formatté selon le format de QUIZZ-DB elle permet
      * d'en extraire les informations permettant de créer un quizz dans la base de donées.
-     * @param filePath le chemin absolu du fichier json
+     * @param absoluteFilePath le chemin absolu du fichier json
      * @return retourne true si le traitement s'est bien passée, sinon false.
      */
-    public static boolean lectureJson(String filePath) {
+    public static boolean lectureJson(String absoluteFilePath) {
         JSONParser parser = new JSONParser();
         try {
-            JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(filePath));
+            JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(absoluteFilePath));
 
             String categoryString = (String) jsonObject.get("thème");
             categoryString = categoryString.substring(0, categoryString.indexOf("(")-1);
@@ -66,8 +65,9 @@ public class JSONUtils {
 
             }
 
+
         }  catch (Exception e) {
-            e.printStackTrace();
+            return false;
         }
         return true;
     }

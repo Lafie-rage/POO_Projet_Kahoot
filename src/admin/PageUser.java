@@ -23,6 +23,8 @@ public class PageUser {
     private JPasswordField passwordField;
     private JButton createButton;
     private JTextArea errorTextArea;
+    private JButton menuButton;
+    private JButton exitButton;
 
     /**
      * Definit le context de la vue et les actions liees aux boutons sur cette vue.
@@ -37,8 +39,6 @@ public class PageUser {
             PlayerRepository.remove(currentKey.getKey());
             resetField();
             filluserField();
-            JFileChooser choix = new JFileChooser();
-            int retour=choix.showOpenDialog(context);
         });
         createButton.addActionListener(e -> {
             String login = loginField.getText();
@@ -50,6 +50,12 @@ public class PageUser {
                 errorTextArea.setText("Unable to create user");
             filluserField();
 
+        });
+        menuButton.addActionListener(e -> {
+            context.changePage("menu");
+        });
+        exitButton.addActionListener(e -> {
+            context.dispose();
         });
     }
     /**

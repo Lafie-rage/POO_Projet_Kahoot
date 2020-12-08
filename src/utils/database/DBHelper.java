@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DBHelper {
     private static final String username = "root";
-    private static final String password = "root";
+    private static final String password = "";
     private static final String url = "jdbc:mysql://localhost:3306/kahoot?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC";
     private static Connection connection;
 
