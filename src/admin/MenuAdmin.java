@@ -17,10 +17,8 @@ public class MenuAdmin {
             context.changePage("user");
         });
 
-        buttonQuizz.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ;
-            }
+        buttonQuizz.addActionListener(e -> {
+            context.changePage("quizz");
         });
 
         buttonExit.addActionListener(e -> {

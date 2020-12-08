@@ -1,12 +1,15 @@
 package admin;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainPage extends JFrame {
 
     public MainPage() {
         setContentPane(new PageLogin(this).getContentPane());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setPreferredSize(new Dimension(450, 300));
+        this.setResizable(false);
         pack();
         setVisible(true);
 
