@@ -1,4 +1,4 @@
-package Server;
+package server;
 
 import java.io.*;
 
@@ -79,42 +79,6 @@ public class Server extends Thread
 
         Server serv = new Server();
         serv.start();
-
-        Socket sock1 = new Socket("127.0.0.1",60000);
-        Client cli = new Client(sock1);
-
-        Socket sock2 = new Socket("127.0.0.1",60000);
-        Client cli2 = new Client(sock2);
-
-        Socket sock3 = new Socket("127.0.0.1",60000);
-        Client cli3 = new Client(sock3);
-
-        Socket sock4 = new Socket("127.0.0.1",60000);
-        Client cli4 = new Client(sock4);
-
-        Socket sock5 = new Socket("127.0.0.1",60000);
-        Client cli5 = new Client(sock5);
-
-        Socket sock6 = new Socket("127.0.0.1",60000);
-        Client cli6 = new Client(sock6);
-
-        Socket sock7 = new Socket("127.0.0.1",60000);
-        Client cli7 = new Client(sock7);
-
-        Socket sock8 = new Socket("127.0.0.1",60000);
-        Client cli8 = new Client(sock8);
-
-        Socket sock9 = new Socket("127.0.0.1",60000);
-        Client cli9 = new Client(sock9);
-
-        Socket sock10 = new Socket("127.0.0.1",60000);
-        Client cli10 = new Client(sock10);
-
-        Socket sock11 = new Socket("127.0.0.1",60000);
-        Client cli11 = new Client(sock11);
-
-        Socket sock12 = new Socket("127.0.0.1",60000);
-        Client cli12 = new Client(sock12);
     }
 
 }
