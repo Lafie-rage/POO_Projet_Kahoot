@@ -1,4 +1,6 @@
-package Server;
+package server;
+
+import model.Player;
 
 import java.io.*;
 import java.net.Socket;
@@ -6,8 +8,12 @@ import java.util.List;
 
 public class Connection extends Thread
 {
-    Socket socket;
+    private Lobby lobby = new Lobby();
+
+    private Socket socket;
     private String iD;
+
+    private Player player;
 
     private ObjectInputStream ois;
     private ObjectOutputStream oos ;
@@ -34,7 +40,16 @@ public class Connection extends Thread
             {
                 Object line = ois.readObject();
                 if (line!=null)
-                    broadcastMessage(line);
+                {
+                    if(line instanceof Player)
+                    {
+                        player = (Player) line;
+                        lobby.addPlayerInLobby(this);
+
+                        //broadcastMessage(line);
+                    }
+
+                }
             }
             catch (IOException e)
             {
@@ -47,7 +62,7 @@ public class Connection extends Thread
         }
     }
 
-    private  synchronized void broadcastMessage(Object message)
+    public synchronized void broadcastMessage(Object message)
     {
         synchronized (Server.getListConnexion())
         {
@@ -66,6 +81,7 @@ public class Connection extends Thread
             }
         }
     }
+
     public Connection(Socket socket) throws IOException
     {
         this.socket=socket;
@@ -73,7 +89,7 @@ public class Connection extends Thread
         oos = new ObjectOutputStream(output);
         InputStream is = socket.getInputStream();
         ois = new ObjectInputStream(is);
-        broadcastMessage(this.Message("--New player--"));
+        //broadcastMessage(this.Message("--New player--"));
     }
 
     public Object Message(String message)

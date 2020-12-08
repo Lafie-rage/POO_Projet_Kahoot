@@ -1,14 +1,14 @@
-package Server;
+package server;
 
 import java.util.*;
 
 public class Lobby extends Thread
 {
-    public final int maxPlayerInRoom = 10 ;
+    public final int maxPlayerInRoom = 1 ;
 
 
     private Room room ;
-    private Queue<Connection> playerInLobby;
+    private static Queue<Connection> playerInLobby;
 
     public Lobby()
     {
