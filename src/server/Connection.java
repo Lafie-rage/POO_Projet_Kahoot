@@ -5,32 +5,34 @@ import model.Player;
 import java.io.*;
 import java.net.Socket;
 import java.util.List;
+import java.util.Queue;
 
 public class Connection extends Thread
 {
-    private Lobby lobby = new Lobby();
+    //private Lobby lobby = new Lobby();
 
-    private Socket socket;
-    private String iD;
+    private Socket socket;                                  // déclaration de la future instance du socket client
+    //private String iD;                                      // déclaration de la future instance du socket client
 
-    private Player player;
+    private Player player;                                  // déclaration de la future instance de player
 
-    private ObjectInputStream ois;
-    private ObjectOutputStream oos ;
+    private ObjectInputStream ois;                          // déclaration de la future instance do l'objet de flux d'entrée
+    private ObjectOutputStream oos ;                        // déclaration de la future instance do l'objet de flux de sortie
 
 
+    // Méthode permettant de récupérer la valeur stockée dans l'objet de flux d'entrée
     public ObjectInputStream getOis()
     {
         return ois;
     }
-
+    // Méthode permettant de récupérer la valeur stockée dans l'objet de flux de sortie
     public ObjectOutputStream getOos()
     {
         return oos;
     }
 
 
-
+    // Réécriture de la méthode "run" de thread (décrit le code exécuté par le thread des connections)
     @Override
     public void run()
     {
@@ -44,7 +46,7 @@ public class Connection extends Thread
                     if(line instanceof Player)
                     {
                         player = (Player) line;
-                        lobby.addPlayerInLobby(this);
+                        Lobby.addPlayerInLobby(this);
 
                         //broadcastMessage(line);
                     }
@@ -62,11 +64,12 @@ public class Connection extends Thread
         }
     }
 
-    public synchronized void broadcastMessage(Object message)
+    // méthode diffusant à tous les joueurs connectés au lobby un objet
+    public synchronized void broadcastInLobby(Object message)
     {
-        synchronized (Server.getListConnexion())
+        synchronized (Lobby.getListPlayerInLobby())                         // la synchronisation évite les problèmes d'accès à la liste simultanné par différentes instances de classes
         {
-            List<Connection> liste = Server.getListConnexion();
+            Queue<Connection> liste = Lobby.getListPlayerInLobby();         // récupère la liste des joueurs dans le lobby et les stocke dans la Queue de connenction
             for (Connection con:liste)
             {
                 try
@@ -82,6 +85,28 @@ public class Connection extends Thread
         }
     }
 
+    // méthode diffusant à tous les joueurs connectés à une room un objet
+    public synchronized void broadcastInRoom(Object message)
+    {
+        synchronized (Room.getListPlayerInRoom())                            // la synchronisation évite les problèmes d'accès à la liste simultanné par différentes instances de classes
+        {
+            List<Connection> liste = Room.getListPlayerInRoom();             // récupère la liste des joueurs dans le lobby et les stocke dans la Queue de connenction
+            for (Connection con:liste)
+            {
+                try
+                {
+                    con.getOos().writeObject(message);
+                    con.getOos().flush();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    // Constructeur de la classe Connection instanciant les objets de flux d'entrées/sorties
     public Connection(Socket socket) throws IOException
     {
         this.socket=socket;
@@ -97,6 +122,7 @@ public class Connection extends Thread
         return message ;
     }
 
+    // méthode fermant les flux d'entrée/sortie ainsi que le socket client
     public void close()
     {
         try
