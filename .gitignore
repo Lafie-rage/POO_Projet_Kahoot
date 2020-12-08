@@ -1,2 +1,4 @@
 # Ignoring out/ file
 /out/
+
+/.idea/
