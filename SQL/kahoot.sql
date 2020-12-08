@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `answer`
 --
 
-DROP TABLE IF EXISTS `answer`;
+DROP TABLE IF EXISTS `Answer`;
 CREATE TABLE IF NOT EXISTS `answer` (
   `ID_answer` int(11) NOT NULL AUTO_INCREMENT,
   `TEXTE_answer` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
 -- Déchargement des données de la table `answer`
 --
 
-INSERT INTO `answer` (`ID_answer`, `TEXTE_answer`) VALUES
+INSERT INTO `Answer` (`ID_answer`, `TEXTE_answer`) VALUES
 (121, 'Rejoindre le centre'),
 (122, 'Mimer une carte'),
 (123, 'Tous les perdre'),
@@ -86,7 +86,7 @@ INSERT INTO `answer` (`ID_answer`, `TEXTE_answer`) VALUES
 -- Structure de la table `category`
 --
 
-DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS `Category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `ID_Category` int(11) NOT NULL AUTO_INCREMENT,
   `TEXTE_Category` varchar(50) CHARACTER SET utf8 NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 -- Déchargement des données de la table `category`
 --
 
-INSERT INTO `category` (`ID_Category`, `TEXTE_Category`) VALUES
+INSERT INTO `Category` (`ID_Category`, `TEXTE_Category`) VALUES
 (5, 'Jeux de société');
 
 -- --------------------------------------------------------
@@ -107,7 +107,7 @@ INSERT INTO `category` (`ID_Category`, `TEXTE_Category`) VALUES
 -- Structure de la table `game`
 --
 
-DROP TABLE IF EXISTS `game`;
+DROP TABLE IF EXISTS `Game`;
 CREATE TABLE IF NOT EXISTS `game` (
   `ID_Game` int(11) NOT NULL AUTO_INCREMENT,
   `Date` date NOT NULL,
@@ -122,8 +122,8 @@ CREATE TABLE IF NOT EXISTS `game` (
 -- Structure de la table `player`
 --
 
-DROP TABLE IF EXISTS `player`;
-CREATE TABLE IF NOT EXISTS `player` (
+DROP TABLE IF EXISTS `Player`;
+CREATE TABLE IF NOT EXISTS `Player` (
   `ID_Player` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(20) CHARACTER SET utf8 NOT NULL,
   `password` varchar(20) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `player` (
 -- Déchargement des données de la table `player`
 --
 
-INSERT INTO `player` (`ID_Player`, `login`, `password`) VALUES
+INSERT INTO `Player` (`ID_Player`, `login`, `password`) VALUES
 (0, 'admin', 'admin'),
 (3, 'user0', 'test'),
 (4, 'user1', 'test'),
@@ -155,8 +155,8 @@ INSERT INTO `player` (`ID_Player`, `login`, `password`) VALUES
 -- Structure de la table `proposition`
 --
 
-DROP TABLE IF EXISTS `proposition`;
-CREATE TABLE IF NOT EXISTS `proposition` (
+DROP TABLE IF EXISTS `Proposition`;
+CREATE TABLE IF NOT EXISTS `Proposition` (
   `answer_ID_answer` int(11) NOT NULL,
   `QUESTION_ID_QUESTION` int(11) NOT NULL,
   PRIMARY KEY (`answer_ID_answer`,`QUESTION_ID_QUESTION`),
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `proposition` (
 -- Déchargement des données de la table `proposition`
 --
 
-INSERT INTO `proposition` (`answer_ID_answer`, `QUESTION_ID_QUESTION`) VALUES
+INSERT INTO `Proposition` (`answer_ID_answer`, `QUESTION_ID_QUESTION`) VALUES
 (121, 31),
 (122, 31),
 (123, 31),
@@ -215,8 +215,8 @@ INSERT INTO `proposition` (`answer_ID_answer`, `QUESTION_ID_QUESTION`) VALUES
 -- Structure de la table `question`
 --
 
-DROP TABLE IF EXISTS `question`;
-CREATE TABLE IF NOT EXISTS `question` (
+DROP TABLE IF EXISTS `Question`;
+CREATE TABLE IF NOT EXISTS `Question` (
   `ID_QUESTION` int(11) NOT NULL AUTO_INCREMENT,
   `TEXTE_QUESTION` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   `Category_ID_Category` int(11) NOT NULL,
@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `question` (
 -- Déchargement des données de la table `question`
 --
 
-INSERT INTO `question` (`ID_QUESTION`, `TEXTE_QUESTION`, `Category_ID_Category`, `ID_BONNE_answer`) VALUES
+INSERT INTO `Question` (`ID_QUESTION`, `TEXTE_QUESTION`, `Category_ID_Category`, `ID_BONNE_answer`) VALUES
 (31, 'Au « Trivial Pursuit », que faut-il faire quand on a obtenu tous les camemberts ?', 5, 121),
 (32, 'Quel jeu créé en 1985 par Rob Angel consiste à faire deviner un mot en le dessinant ?', 5, 128),
 (33, 'Quel jeu de société consiste à ruiner ses adversaires par des opérations immobilières ?', 5, 129),
@@ -248,8 +248,8 @@ INSERT INTO `question` (`ID_QUESTION`, `TEXTE_QUESTION`, `Category_ID_Category`,
 -- Structure de la table `question_game`
 --
 
-DROP TABLE IF EXISTS `question_game`;
-CREATE TABLE IF NOT EXISTS `question_game` (
+DROP TABLE IF EXISTS `Question_game`;
+CREATE TABLE IF NOT EXISTS `Question_game` (
   `Game_ID_Game` int(11) NOT NULL,
   `QUESTION_ID_QUESTION` int(11) NOT NULL,
   PRIMARY KEY (`Game_ID_Game`,`QUESTION_ID_QUESTION`),
@@ -262,8 +262,8 @@ CREATE TABLE IF NOT EXISTS `question_game` (
 -- Structure de la table `score`
 --
 
-DROP TABLE IF EXISTS `score`;
-CREATE TABLE IF NOT EXISTS `score` (
+DROP TABLE IF EXISTS `Score`;
+CREATE TABLE IF NOT EXISTS `Score` (
   `Id_player` int(11) NOT NULL,
   `id_game` int(11) NOT NULL,
   `Score` int(11) NOT NULL,
@@ -278,34 +278,34 @@ CREATE TABLE IF NOT EXISTS `score` (
 --
 -- Contraintes pour la table `game`
 --
-ALTER TABLE `game`
+ALTER TABLE `Game`
   ADD CONSTRAINT `fk_category` FOREIGN KEY (`id_category`) REFERENCES `category` (`ID_Category`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `proposition`
 --
-ALTER TABLE `proposition`
+ALTER TABLE `Proposition`
   ADD CONSTRAINT `fk_PROPOSITION_QUESTION1` FOREIGN KEY (`QUESTION_ID_QUESTION`) REFERENCES `question` (`ID_QUESTION`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_PROPOSITION_answer1` FOREIGN KEY (`answer_ID_answer`) REFERENCES `answer` (`ID_answer`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `question`
 --
-ALTER TABLE `question`
+ALTER TABLE `Question`
   ADD CONSTRAINT `fk_QUESTION_Category1` FOREIGN KEY (`Category_ID_Category`) REFERENCES `category` (`ID_Category`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_QUESTION_answer1` FOREIGN KEY (`ID_BONNE_answer`) REFERENCES `answer` (`ID_answer`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `question_game`
 --
-ALTER TABLE `question_game`
+ALTER TABLE `Question_game`
   ADD CONSTRAINT `fk_QUESTION_Game_Game1` FOREIGN KEY (`Game_ID_Game`) REFERENCES `game` (`ID_Game`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_QUESTION_Game_QUESTION1` FOREIGN KEY (`QUESTION_ID_QUESTION`) REFERENCES `question` (`ID_QUESTION`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `score`
 --
-ALTER TABLE `score`
+ALTER TABLE `Score`
   ADD CONSTRAINT `Fk_game` FOREIGN KEY (`id_game`) REFERENCES `game` (`ID_Game`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Fk_player` FOREIGN KEY (`Id_player`) REFERENCES `player` (`ID_Player`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
