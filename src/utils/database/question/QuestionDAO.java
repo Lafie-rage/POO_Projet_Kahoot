@@ -11,9 +11,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe permettant d'acceder  à la base de donnees pour les
+ * requêtes inérantes aux objets Question.
+ */
 class QuestionDAO {
     private DBHelper dbHelper;
 
+    /**
+     * Constructeur du DAO pour les questions.
+     */
     public QuestionDAO() {
         try {
             dbHelper = new DBHelper();
@@ -22,6 +29,11 @@ class QuestionDAO {
         }
     }
 
+    /**
+     * Méthode permettant de récupérer dans la BDD  tous les questions d'une categorie
+     * @param category la categorie pour laquelle on veut recupérer les questions
+     * @return liste des joueurs présents dans la BDD
+     */
     public List<Question> getAll(Category category) {
         List<Question> items = new ArrayList<>();
 
@@ -57,10 +69,6 @@ class QuestionDAO {
         return -1;
     }
 
-    public Question get(int id) {
-        return null;
-    }
-
     public int getIdCorrectAnswer(int id) {
         if (dbHelper != null) {
             try {
@@ -79,6 +87,11 @@ class QuestionDAO {
         return -1;
     }
 
+    /**
+     * Méthode permettant d'ajouter une question dans la BDD
+     * @param item question a ajouter
+     * @return l'id de l'insertion si insertion réussi sinon un entier négatif
+     */
     public int add(Question item) {
         try {
             PreparedStatement preparedStatement = dbHelper.getPreparedStatement("INSERT INTO Question(TEXTE_QUESTION, ID_BONNE_answer, Category_ID_Category) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);

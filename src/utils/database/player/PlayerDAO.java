@@ -12,9 +12,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe permettant d'acceder  à la base de donnees pour les
+ * requêtes inérantes aux objets Player.
+ */
 class PlayerDAO {
     private DBHelper dbHelper;
-
+    /**
+     * Constructeur du DAO pour les joueurs.
+     */
     public PlayerDAO() {
         try {
             dbHelper = new DBHelper();
@@ -38,6 +44,10 @@ class PlayerDAO {
         return true;
     }
 
+    /**
+     * Méthode permettant de récupérer dans la BDD  tous les joueurs
+     * @return liste des joueurs présents dans la BDD
+     */
     public List<Player> getAll() {
         List<Player> items = new ArrayList<>();
 
@@ -88,6 +98,11 @@ class PlayerDAO {
         return null;
     }
 
+    /**
+     * Méthode permettant d'ajouter un joueur dans la BDD
+     * @param item joueur à ajouter
+     * @return l'id de l'insertion si insertion réussi sinon un entier négatif
+     */
     public int add(Player item) {
         if (dbHelper != null) {
             try {

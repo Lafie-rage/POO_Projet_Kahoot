@@ -12,18 +12,6 @@ public class AnswerRepository {
         return dao.getAll(question);
     }
 
-    public static  Answer get(int id) {
-        return dao.get(id);
-    }
-
-    public static boolean update(int id, Answer item) {
-        return dao.update(id, item);
-    }
-
-    public static boolean delete(int id) {
-        return dao.delete(id);
-    }
-
     public static boolean add(Answer item) {
         int id = dao.add(item);
         if(id > -1) {

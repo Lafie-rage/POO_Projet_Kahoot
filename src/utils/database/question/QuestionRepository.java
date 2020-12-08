@@ -14,6 +14,7 @@ public class QuestionRepository {
         return dao.getCountQuestion();
     }
 
+
     public static List<Question> getAll(Category category) {
         AnswerRepository answerRepository = new AnswerRepository();
         List<Question> questions = dao.getAll(category);
@@ -25,10 +26,6 @@ public class QuestionRepository {
                     question.setCorrectAnswer(proposal);
         }
         return questions;
-    }
-
-    public static Question get(int id) {
-        return dao.get(id);
     }
 
     public static boolean add(Question item) {

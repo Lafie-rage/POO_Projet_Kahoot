@@ -11,9 +11,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe permettant d'acceder  à la base de donnees pour les
+ * requêtes inérantes aux objets Answer.
+ */
 class AnswerDAO {
     private DBHelper dbHelper;
 
+    /**
+     * Constructeur du DAO pour les reponses.
+     */
     public AnswerDAO() {
         try {
             dbHelper = new DBHelper();
@@ -22,6 +29,11 @@ class AnswerDAO {
         }
     }
 
+    /**
+     * Méthode permettant de récupérer dans la BDD  toutes les réponses d'une question donnee
+     * @param question la question pour laquelle on veut recuperer les reponses
+     * @return liste des réponses de la question
+     */
     public List<Answer> getAll(Question question) {
         List<Answer> items = new ArrayList<>();
 
@@ -44,18 +56,11 @@ class AnswerDAO {
         return items;
     }
 
-    public Answer get(int id) {
-        return null;
-    }
-
-    public boolean update(int id, Answer item) {
-        return false;
-    }
-
-    public boolean delete(int id) {
-        return false;
-    }
-
+    /**
+     * Méthode permettant d'ajouter une reponse dans la BDD
+     * @param item reponse à ajouter
+     * @return l'id de l'insertion si insertion réussi sinon un entier négatif
+     */
     public int add(Answer item) {
         try {
             PreparedStatement preparedStatement = dbHelper.getPreparedStatement("INSERT INTO Answer(TEXTE_answer) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
@@ -71,10 +76,16 @@ class AnswerDAO {
         return -1;
     }
 
-    public boolean link(Answer item, Question question) {
+    /**
+     * Methode permettant de lier une reponse et une question en faisant une insertion dans la BDD
+     * @param answer
+     * @param question
+     * @return true si l'insertion c'est bien passé sinon false
+     */
+    public boolean link(Answer answer, Question question) {
         try {
             PreparedStatement preparedStatement = dbHelper.getPreparedStatement("INSERT INTO Proposition(answer_ID_answer, QUESTION_ID_QUESTION) VALUES (?, ?)");
-            preparedStatement.setInt(1, item.getId());
+            preparedStatement.setInt(1, answer.getId());
             preparedStatement.setInt(2, question.getId());
             return preparedStatement.execute();
         } catch (SQLException throwables) {
@@ -82,6 +93,11 @@ class AnswerDAO {
         }
     }
 
+    /**
+     * Methode permettant de supprimer les réponses associé à une categorie
+     * @param id
+     * @return
+     */
     public int removeFromCategory(int id) {
 
         if (dbHelper != null) {

@@ -21,6 +21,12 @@ public class CategoryRepository {
         return item;
     }
 
+    /**
+     * Methode statique permettant d'ajouter une categorie
+     * Si l'id de la categorie est négatif alors l'jout ne se fait pas
+     * @param item
+     * @return
+     */
     public static boolean add(Category item) {
         QuestionRepository questionRepository = new QuestionRepository();
         boolean flag = true;

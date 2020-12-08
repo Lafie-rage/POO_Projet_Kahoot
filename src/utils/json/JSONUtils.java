@@ -15,8 +15,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Classe definissant une methode statique permetant de traiter un fichier Json
+ */
 public class JSONUtils {
 
+    /**
+     * Méthode statique permetant de charger un json, si le json est formatté selon le format de QUIZZ-DB elle permet
+     * d'en extraire les informations permettant de créer un quizz dans la base de donées.
+     * @param filePath le chemin absolu du fichier json
+     * @return retourne true si le traitement s'est bien passée, sinon false.
+     */
     public static boolean lectureJson(String filePath) {
         JSONParser parser = new JSONParser();
         try {

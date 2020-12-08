@@ -10,9 +10,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe permettant d'acceder  à la base de donnees pour les
+ * requêtes inérantes aux objets Category.
+ */
 class CategoryDAO {
     private DBHelper dbHelper;
 
+    /**
+     * Constructeur du DAO pour les categories.
+     */
     public CategoryDAO() {
         try {
             dbHelper = new DBHelper();
@@ -21,6 +28,10 @@ class CategoryDAO {
         }
     }
 
+    /**
+     * Méthode permettant de récupérer dans la BDD  toutes les catégories
+     * @return liste des categories  présent dans la BDD
+     */
     public List<Category> getAll() {
         List<Category> items = new ArrayList<>();
 
@@ -39,6 +50,7 @@ class CategoryDAO {
         return items;
     }
 
+
     public Category get(int id) {
         if(dbHelper != null) {
             String query = "SELECT TEXTE_Category FROM Category WHERE ID_Category = ?";
@@ -56,6 +68,11 @@ class CategoryDAO {
         return null;
     }
 
+    /**
+     * Méthode permettant d'ajouter une categorie dans la BDD
+     * @param item categorie à ajouter
+     * @return l'id de l'insertion si insertion réussi sinon un entier négatif
+     */
     public int add(Category item) {
         if(dbHelper != null) {
             try {
@@ -88,6 +105,10 @@ class CategoryDAO {
 
     }
 
+    /**
+     * Méthode permettant de récupérer une catégorie tiré au hazard
+     * @return
+     */
     public Category getRandomly(){
         if(dbHelper != null) {
             String query = "SELECT * FROM Category ORDER BY RAND() LIMIT 1";
