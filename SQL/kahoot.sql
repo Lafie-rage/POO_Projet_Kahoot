@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `Answer`;
-CREATE TABLE IF NOT EXISTS `answer` (
+CREATE TABLE IF NOT EXISTS `Answer` (
   `ID_answer` int(11) NOT NULL AUTO_INCREMENT,
   `TEXTE_answer` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`ID_answer`)
@@ -87,7 +87,7 @@ INSERT INTO `Answer` (`ID_answer`, `TEXTE_answer`) VALUES
 --
 
 DROP TABLE IF EXISTS `Category`;
-CREATE TABLE IF NOT EXISTS `category` (
+CREATE TABLE IF NOT EXISTS `Category` (
   `ID_Category` int(11) NOT NULL AUTO_INCREMENT,
   `TEXTE_Category` varchar(50) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`ID_Category`),
@@ -108,7 +108,7 @@ INSERT INTO `Category` (`ID_Category`, `TEXTE_Category`) VALUES
 --
 
 DROP TABLE IF EXISTS `Game`;
-CREATE TABLE IF NOT EXISTS `game` (
+CREATE TABLE IF NOT EXISTS `Game` (
   `ID_Game` int(11) NOT NULL AUTO_INCREMENT,
   `Date` date NOT NULL,
   `id_category` int(11) NOT NULL,
